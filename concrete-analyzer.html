@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Sales & Profit Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .modules {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .module {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .module h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .cost-item label {
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .cost-item input {
+            width: 100px;
+            margin-left: 10px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .results {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .results h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #28a745;
+        }
+
+        .metric-card.warning {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left-color: #ffc107;
+        }
+
+        .metric-card.danger {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left-color: #dc3545;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .data-table th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .chart-container {
+            height: 300px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            border: 2px dashed #ddd;
+        }
+
+        .profit-positive {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .profit-negative {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .modules {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Concrete Sales & Profit Analyzer</h1>
+            <p>Analyze historical performance and project future profitability</p>
+        </div>
+
+        <div class="content">
+            <div class="modules">
+                <!-- Historical Analysis Module -->
+                <div class="module">
+                    <h2>📊 Historical Analysis</h2>
+                    
+                    <div class="input-group">
+                        <label for="profitabilityGoal">Monthly Profitability Goal ($)</label>
+                        <input type="number" id="profitabilityGoal" value="15000" placeholder="Enter target profit">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="analysisMonths">Analysis Period</label>
+                        <select id="analysisMonths" multiple size="4">
+                            <option value="2024-01">January 2024</option>
+                            <option value="2024-02">February 2024</option>
+                            <option value="2024-03">March 2024</option>
+                            <option value="2024-04">April 2024</option>
+                            <option value="2024-05">May 2024</option>
+                            <option value="2024-06">June 2024</option>
+                        </select>
+                    </div>
+
+                    <button class="btn" onclick="updateHistoricalAnalysis()">Analyze Historical Data</button>
+                </div>
+
+                <!-- Cost Projection Module -->
+                <div class="module">
+                    <h2>💰 Cost Projection</h2>
+                    
+                    <div class="cost-item">
+                        <label>Concrete Manufacturing ($/yard)</label>
+                        <input type="number" id="concreteCost" value="70" step="0.01">
+                    </div>
+
+                    <div class="cost-item">
+                        <label>Labor Cost ($/hour)</label>
+                        <input type="number" id="laborCost" value="25" step="0.01">
+                    </div>
+
+                    <div class="cost-item">
+                        <label>Fixed Costs (Monthly $)</label>
+                        <input type="number" id="fixedCosts" value="8000" step="0.01">
+                    </div>
+
+                    <div class="cost-item">
+                        <label>Projected Volume (yards/month)</label>
+                        <input type="number" id="projectedVolume" value="500" step="1">
+                    </div>
+
+                    <div class="cost-item">
+                        <label>Labor Hours per Yard</label>
+                        <input type="number" id="laborHours" value="2" step="0.1">
+                    </div>
+
+                    <button class="btn" onclick="updateProjections()">Update Projections</button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results">
+                <h2>📈 Analysis Results</h2>
+                
+                <div class="metrics">
+                    <div class="metric-card" id="avgProfitCard">
+                        <div class="metric-value" id="avgProfit">$12,500</div>
+                        <div class="metric-label">Average Monthly Profit</div>
+                    </div>
+                    
+                    <div class="metric-card" id="projectedProfitCard">
+                        <div class="metric-value" id="projectedProfit">$14,750</div>
+                        <div class="metric-label">Projected Monthly Profit</div>
+                    </div>
+                    
+                    <div class="metric-card" id="goalAchievementCard">
+                        <div class="metric-value" id="goalAchievement">83%</div>
+                        <div class="metric-label">Goal Achievement</div>
+                    </div>
+                    
+                    <div class="metric-card" id="totalVolumeCard">
+                        <div class="metric-value" id="totalVolume">2,850</div>
+                        <div class="metric-label">Total Yards (6 months)</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <p style="color: #666; font-style: italic;">
+                        📊 Interactive Chart Area<br>
+                        (Chart visualization would display monthly profit trends vs. goals)
+                    </p>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Volume (yards)</th>
+                            <th>Revenue</th>
+                            <th>Total Costs</th>
+                            <th>Profit</th>
+                            <th>Goal Achievement</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock historical data
+        const historicalData = {
+            '2024-01': { volume: 450, revenue: 67500, materialCosts: 31500, laborCosts: 22500, fixedCosts: 8000 },
+            '2024-02': { volume: 520, revenue: 78000, materialCosts: 36400, laborCosts: 26000, fixedCosts: 8000 },
+            '2024-03': { volume: 480, revenue: 72000, materialCosts: 33600, laborCosts: 24000, fixedCosts: 8000 },
+            '2024-04': { volume: 550, revenue: 82500, materialCosts: 38500, laborCosts: 27500, fixedCosts: 8000 },
+            '2024-05': { volume: 490, revenue: 73500, materialCosts: 34300, laborCosts: 24500, fixedCosts: 8000 },
+            '2024-06': { volume: 360, revenue: 54000, materialCosts: 25200, laborCosts: 18000, fixedCosts: 8000 }
+        };
+
+        const monthNames = {
+            '2024-01': 'Jan 2024',
+            '2024-02': 'Feb 2024',
+            '2024-03': 'Mar 2024',
+            '2024-04': 'Apr 2024',
+            '2024-05': 'May 2024',
+            '2024-06': 'Jun 2024'
+        };
+
+        function updateHistoricalAnalysis() {
+            const selectedMonths = Array.from(document.getElementById('analysisMonths').selectedOptions)
+                .map(option => option.value);
+            
+            if (selectedMonths.length === 0) {
+                alert('Please select at least one month for analysis');
+                return;
+            }
+
+            const profitabilityGoal = parseFloat(document.getElementById('profitabilityGoal').value) || 15000;
+
+            // Calculate metrics for selected months
+            let totalProfit = 0;
+            let totalVolume = 0;
+            let goalsAchieved = 0;
+
+            const tableBody = document.getElementById('dataTableBody');
+            tableBody.innerHTML = '';
+
+            selectedMonths.forEach(month => {
+                const data = historicalData[month];
+                const profit = data.revenue - data.materialCosts - data.laborCosts - data.fixedCosts;
+                const goalAchievement = (profit / profitabilityGoal * 100).toFixed(1);
+                
+                totalProfit += profit;
+                totalVolume += data.volume;
+                if (profit >= profitabilityGoal) goalsAchieved++;
+
+                // Add row to table
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+                    <td>${monthNames[month]}</td>
+                    <td>${data.volume.toLocaleString()}</td>
+                    <td>$${data.revenue.toLocaleString()}</td>
+                    <td>$${(data.materialCosts + data.laborCosts + data.fixedCosts).toLocaleString()}</td>
+                    <td class="${profit >= 0 ? 'profit-positive' : 'profit-negative'}">$${profit.toLocaleString()}</td>
+                    <td>${goalAchievement}%</td>
+                `;
+            });
+
+            const avgProfit = totalProfit / selectedMonths.length;
+            const overallGoalAchievement = (avgProfit / profitabilityGoal * 100).toFixed(0);
+
+            // Update metrics
+            document.getElementById('avgProfit').textContent = `$${Math.round(avgProfit).toLocaleString()}`;
+            document.getElementById('totalVolume').textContent = totalVolume.toLocaleString();
+            document.getElementById('goalAchievement').textContent = `${overallGoalAchievement}%`;
+
+            // Update card colors based on performance
+            const avgProfitCard = document.getElementById('avgProfitCard');
+            const goalCard = document.getElementById('goalAchievementCard');
+            
+            avgProfitCard.className = 'metric-card ' + (avgProfit >= profitabilityGoal ? '' : 'warning');
+            goalCard.className = 'metric-card ' + (overallGoalAchievement >= 100 ? '' : 
+                                                  overallGoalAchievement >= 80 ? 'warning' : 'danger');
+
+            updateProjections(); // Also update projections
+        }
+
+        function updateProjections() {
+            const concreteCost = parseFloat(document.getElementById('concreteCost').value) || 70;
+            const laborCost = parseFloat(document.getElementById('laborCost').value) || 25;
+            const fixedCosts = parseFloat(document.getElementById('fixedCosts').value) || 8000;
+            const projectedVolume = parseFloat(document.getElementById('projectedVolume').value) || 500;
+            const laborHours = parseFloat(document.getElementById('laborHours').value) || 2;
+            const profitabilityGoal = parseFloat(document.getElementById('profitabilityGoal').value) || 15000;
+
+            // Assuming revenue per yard of $150 (can be made configurable)
+            const revenuePerYard = 150;
+            const projectedRevenue = projectedVolume * revenuePerYard;
+            const projectedMaterialCosts = projectedVolume * concreteCost;
+            const projectedLaborCosts = projectedVolume * laborHours * laborCost;
+            const projectedTotalCosts = projectedMaterialCosts + projectedLaborCosts + fixedCosts;
+            const projectedProfit = projectedRevenue - projectedTotalCosts;
+
+            // Update projected profit metric
+            document.getElementById('projectedProfit').textContent = `$${Math.round(projectedProfit).toLocaleString()}`;
+            
+            const projectedCard = document.getElementById('projectedProfitCard');
+            projectedCard.className = 'metric-card ' + (projectedProfit >= profitabilityGoal ? '' : 
+                                                       projectedProfit >= profitabilityGoal * 0.8 ? 'warning' : 'danger');
+
+            // Add projection row to table if not exists
+            const tableBody = document.getElementById('dataTableBody');
+            let projectionRow = document.getElementById('projectionRow');
+            
+            if (projectionRow) {
+                projectionRow.remove();
+            }
+            
+            projectionRow = tableBody.insertRow();
+            projectionRow.id = 'projectionRow';
+            projectionRow.style.backgroundColor = '#e3f2fd';
+            projectionRow.innerHTML = `
+                <td><strong>Projection</strong></td>
+                <td><strong>${projectedVolume.toLocaleString()}</strong></td>
+                <td><strong>$${projectedRevenue.toLocaleString()}</strong></td>
+                <td><strong>$${projectedTotalCosts.toLocaleString()}</strong></td>
+                <td class="${projectedProfit >= 0 ? 'profit-positive' : 'profit-negative'}"><strong>$${Math.round(projectedProfit).toLocaleString()}</strong></td>
+                <td><strong>${(projectedProfit / profitabilityGoal * 100).toFixed(1)}%</strong></td>
+            `;
+        }
+
+        // Initialize with default selections
+        document.addEventListener('DOMContentLoaded', function() {
+            // Select first 3 months by default
+            const monthsSelect = document.getElementById('analysisMonths');
+            monthsSelect.options[0].selected = true;
+            monthsSelect.options[1].selected = true;
+            monthsSelect.options[2].selected = true;
+            
+            // Run initial analysis
+            updateHistoricalAnalysis();
+        });
+
+        // Auto-update projections when cost inputs change
+        document.getElementById('concreteCost').addEventListener('input', updateProjections);
+        document.getElementById('laborCost').addEventListener('input', updateProjections);
+        document.getElementById('fixedCosts').addEventListener('input', updateProjections);
+        document.getElementById('projectedVolume').addEventListener('input', updateProjections);
+        document.getElementById('laborHours').addEventListener('input', updateProjections);
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\Users\\Mario\\Documents\\GitHub\\take4\" /a)",
+      "Bash(cat:*)",
+      "Bash(start concrete-analyzer.html)",
+      "Bash(start concrete-analyzer-redesign.html)",
+      "Bash(start concrete-analyzer-mixed-cost-basis.html)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}

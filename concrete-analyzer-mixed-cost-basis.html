@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Sales & Profit Analyzer - Mixed Cost Basis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .update-banner {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .step-header {
+            background: #3498db;
+            color: white;
+            padding: 15px 25px;
+            margin: -30px -30px 25px -30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .month-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .month-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .month-card:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .month-card.selected {
+            border-color: #3498db;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+        }
+
+        .month-card h3 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .volume-display {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+
+        .month-card.selected .volume-display {
+            color: #fff;
+        }
+
+        .month-card p {
+            font-size: 0.8rem;
+            margin: 2px 0;
+        }
+
+        .summary-stats {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .cost-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .cost-column {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .cost-column h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.2rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .cost-item.manufacturing {
+            border-left-color: #e74c3c;
+        }
+
+        .cost-item.labor {
+            border-left-color: #f39c12;
+        }
+
+        .cost-item.fixed {
+            border-left-color: #9b59b6;
+        }
+
+        .cost-item span:first-child {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .cost-input {
+            width: 120px;
+            padding: 8px 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: right;
+        }
+
+        .cost-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .cost-basis-indicator {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-left: 8px;
+        }
+
+        .calculated-display {
+            font-size: 0.9rem;
+            color: #27ae60;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(116, 185, 255, 0.3);
+        }
+
+        .highlight .metric {
+            margin: 8px 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(116, 185, 255, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .navigation {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .goal-input {
+            width: 150px;
+            padding: 10px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: right;
+            margin: 0 10px;
+        }
+
+        .goal-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .cost-comparison {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .month-selection {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Concrete Sales & Profit Analyzer</h1>
+            <p>Historical Analysis → Goal Setting → Cost Projections with Mixed Cost Basis</p>
+        </div>
+
+        <div class="update-banner">
+            ⚠️ NEW: Mixed Cost Basis - Manufacturing (per-yard) + Labor & Fixed (lump sum) 
+        </div>
+
+        <div class="content">
+            <!-- Step 1: Month Selection -->
+            <div class="step active" id="step1">
+                <div class="step-header">Step 1: Select Historical Months for Analysis</div>
+                
+                <p>Select the months you want to analyze. You'll see side-by-side comparison of selected months with totals and averages.</p>
+                
+                <div class="month-selection" id="monthSelection">
+                    <!-- Month cards will be populated dynamically -->
+                </div>
+                
+                <div class="summary-stats" id="monthSummary" style="display: none;">
+                    <h3>Selected Months Summary</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalVolume">0</div>
+                            <div class="stat-label">Total Volume (yards³)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalRevenue">$0</div>
+                            <div class="stat-label">Total Revenue</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalProfit">$0</div>
+                            <div class="stat-label">Total Profit</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="avgMargin">0%</div>
+                            <div class="stat-label">Average Profit Margin</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn" id="continueBtn" onclick="goToStep(2)" disabled>Continue to Goal Setting →</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Profitability Goal -->
+            <div class="step" id="step2">
+                <div class="step-header">Step 2: Set Your Profitability Goal & Projected Volume</div>
+                
+                <p>Based on your historical performance, set a total profit goal and projected volume for your future period.</p>
+                
+                <div class="summary-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="historicalVolumeDisplay">0</div>
+                            <div class="stat-label">Historical Total Volume</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="historicalProfitDisplay">$0</div>
+                            <div class="stat-label">Historical Total Profit</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="historicalMarginDisplay">0%</div>
+                            <div class="stat-label">Historical Average Margin</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-size: 1.2rem; font-weight: 500;">
+                            Projected Volume:
+                            <input type="number" class="goal-input" id="projectedVolume" placeholder="0" oninput="calculateGoalMetrics()" style="width: 130px;">
+                            yards³
+                        </label>
+                        <div style="margin-top: 8px; font-size: 0.95rem; color: #7f8c8d;">
+                            (Total volume estimate for selected period)
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label style="font-size: 1.2rem; font-weight: 500;">
+                            Total Profit Goal: $
+                            <input type="number" class="goal-input" id="profitGoal" placeholder="0" oninput="calculateGoalMetrics()">
+                        </label>
+                        <div style="margin-top: 8px; font-size: 0.95rem; color: #7f8c8d;">
+                            (Total profit target for all selected months combined)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight" id="goalMetrics" style="display: none;">
+                    <div class="metric">Volume vs Historical: <span id="volumeComparison">Set volume above</span></div>
+                    <div class="metric">Profit Target vs Historical: <span id="goalComparison">Set goal above</span></div>
+                    <div class="metric">Required Profit per Yard: <span id="profitPerYard">Calculate above</span></div>
+                    <div class="metric">Required Profit Margin: <span id="requiredMargin">Calculate above</span></div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn" onclick="goToStep(1)">← Back to Month Selection</button>
+                    <button class="btn" id="toCostProjections" onclick="goToStep(3)" disabled>Continue to Cost Projections →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Mixed Cost Basis Projections -->
+            <div class="step" id="step3">
+                <div class="step-header">Step 3: Cost Projections - Mixed Cost Basis (Per-Yard + Lump Sum)</div>
+                
+                <p><strong>New Approach:</strong> Manufacturing costs are per-yard (for pricing), while Labor and Fixed costs are lump sums (for budgeting). This matches real concrete business planning.</p>
+
+                <div class="cost-comparison">
+                    <div class="cost-column">
+                        <h3>📋 Previous Period (Historical Average)</h3>
+                        <div id="previousCosts">
+                            <!-- Previous costs will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="cost-column">
+                        <h3>🎯 Future Period (Your Projections)</h3>
+                        <div id="futureCosts">
+                            <div class="cost-item manufacturing">
+                                <div>
+                                    <span>Concrete Manufacturing:</span>
+                                    <span class="cost-basis-indicator">(per-yard basis)</span>
+                                </div>
+                                <div>
+                                    $<input type="number" class="cost-input" id="futureManufacturing" step="0.01" placeholder="0.00" oninput="calculateProjections()">/yard
+                                    <div class="calculated-display" id="manufacturingTotal">Total: $0</div>
+                                </div>
+                            </div>
+                            <div class="cost-item labor">
+                                <div>
+                                    <span>Labor Costs:</span>
+                                    <span class="cost-basis-indicator">(lump sum total)</span>
+                                </div>
+                                <div>
+                                    $<input type="number" class="cost-input" id="futureLabor" step="1" placeholder="0" oninput="calculateProjections()"> total
+                                    <div class="calculated-display" id="laborPerYard">Per yard: $0.00</div>
+                                </div>
+                            </div>
+                            <div class="cost-item fixed">
+                                <div>
+                                    <span>Fixed Costs:</span>
+                                    <span class="cost-basis-indicator">(lump sum total)</span>
+                                </div>
+                                <div>
+                                    $<input type="number" class="cost-input" id="futureFixed" step="1" placeholder="0" oninput="calculateProjections()"> total
+                                    <div class="calculated-display" id="fixedPerYard">Per yard: $0.00</div>
+                                </div>
+                            </div>
+                            <div class="cost-item" style="border-left-color: #27ae60; font-weight: 600;">
+                                <span><strong>Total Projected Costs:</strong></span>
+                                <span id="totalFutureCost"><strong>$0.00</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight" id="projectionResults">
+                    <div class="metric">Projected Revenue: <span id="projectedRevenue">$0.00</span></div>
+                    <div class="metric">Projected Profit: <span id="projectedProfit">$0.00</span></div>
+                    <div class="metric">Projected Margin: <span id="projectedMargin">0.0%</span></div>
+                    <div class="metric">Goal Achievement: <span id="goalAchievement">Set costs above</span></div>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn" onclick="goToStep(2)">← Back to Goal Setting</button>
+                    <button class="btn" onclick="generateReport()">📊 Generate Full Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample historical data with more detailed cost breakdown
+        const historicalData = {
+            'Jan 2024': { volume: 1250, revenue: 125000, costs: 87500, manufacturing: 52500, labor: 22750, fixed: 12250 },
+            'Feb 2024': { volume: 980, revenue: 98000, costs: 68600, manufacturing: 41160, labor: 17822, fixed: 9618 },
+            'Mar 2024': { volume: 1450, revenue: 145000, costs: 101500, manufacturing: 60900, labor: 26390, fixed: 14210 },
+            'Apr 2024': { volume: 1320, revenue: 132000, costs: 92400, manufacturing: 55440, labor: 24024, fixed: 12936 },
+            'May 2024': { volume: 1680, revenue: 168000, costs: 117600, manufacturing: 70560, labor: 30576, fixed: 16464 },
+            'Jun 2024': { volume: 1520, revenue: 152000, costs: 106400, manufacturing: 63840, labor: 27664, fixed: 14896 },
+            'Jul 2024': { volume: 1750, revenue: 175000, costs: 122500, manufacturing: 73500, labor: 31850, fixed: 17150 },
+            'Aug 2024': { volume: 1630, revenue: 163000, costs: 114100, manufacturing: 68460, labor: 29663, fixed: 15977 },
+            'Sep 2024': { volume: 1420, revenue: 142000, costs: 99400, manufacturing: 59640, labor: 25842, fixed: 13918 },
+            'Oct 2024': { volume: 1290, revenue: 129000, costs: 90300, manufacturing: 54180, labor: 23478, fixed: 12642 },
+            'Nov 2024': { volume: 1150, revenue: 115000, costs: 80500, manufacturing: 48300, labor: 20930, fixed: 11270 },
+            'Dec 2024': { volume: 1100, revenue: 110000, costs: 77000, manufacturing: 46200, labor: 20020, fixed: 10780 }
+        };
+
+        let selectedMonths = [];
+        let currentStep = 1;
+        let totalSelectedVolume = 0;
+        let totalSelectedRevenue = 0;
+        let totalSelectedCosts = 0;
+        let totalSelectedProfit = 0;
+        let historicalCostBreakdown = { manufacturing: 0, labor: 0, fixed: 0 };
+        let profitGoal = 0;
+        let projectedVolume = 0;
+
+        // Initialize the application
+        function init() {
+            generateMonthCards();
+            setupEventListeners();
+        }
+
+        function generateMonthCards() {
+            const monthSelection = document.getElementById('monthSelection');
+            monthSelection.innerHTML = '';
+
+            Object.keys(historicalData).forEach(month => {
+                const data = historicalData[month];
+                const card = document.createElement('div');
+                card.className = 'month-card';
+                card.onclick = () => toggleMonth(month, card);
+                
+                card.innerHTML = `
+                    <h3>${month}</h3>
+                    <div class="volume-display">${data.volume.toLocaleString()} yards³</div>
+                    <p>Revenue: $${data.revenue.toLocaleString()}</p>
+                    <p>Profit: $${(data.revenue - data.costs).toLocaleString()}</p>
+                `;
+                
+                monthSelection.appendChild(card);
+            });
+        }
+
+        function toggleMonth(month, cardElement) {
+            const index = selectedMonths.indexOf(month);
+            
+            if (index > -1) {
+                selectedMonths.splice(index, 1);
+                cardElement.classList.remove('selected');
+            } else {
+                selectedMonths.push(month);
+                cardElement.classList.add('selected');
+            }
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            if (selectedMonths.length === 0) {
+                document.getElementById('monthSummary').style.display = 'none';
+                document.getElementById('continueBtn').disabled = true;
+                return;
+            }
+            
+            // Calculate totals
+            totalSelectedVolume = 0;
+            totalSelectedRevenue = 0;
+            totalSelectedCosts = 0;
+            totalSelectedProfit = 0;
+            historicalCostBreakdown = { manufacturing: 0, labor: 0, fixed: 0 };
+            
+            selectedMonths.forEach(month => {
+                const data = historicalData[month];
+                totalSelectedVolume += data.volume;
+                totalSelectedRevenue += data.revenue;
+                totalSelectedCosts += data.costs;
+                totalSelectedProfit += (data.revenue - data.costs);
+                
+                historicalCostBreakdown.manufacturing += data.manufacturing;
+                historicalCostBreakdown.labor += data.labor;
+                historicalCostBreakdown.fixed += data.fixed;
+            });
+            
+            const avgMargin = totalSelectedRevenue > 0 ? (totalSelectedProfit / totalSelectedRevenue * 100) : 0;
+            
+            // Update display
+            document.getElementById('totalVolume').textContent = totalSelectedVolume.toLocaleString();
+            document.getElementById('totalRevenue').textContent = '$' + totalSelectedRevenue.toLocaleString();
+            document.getElementById('totalProfit').textContent = '$' + totalSelectedProfit.toLocaleString();
+            document.getElementById('avgMargin').textContent = avgMargin.toFixed(1) + '%';
+            
+            document.getElementById('monthSummary').style.display = 'block';
+            document.getElementById('continueBtn').disabled = false;
+        }
+
+        function goToStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            
+            // Show target step
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            
+            if (step === 2) {
+                // Update step 2 with historical data
+                document.getElementById('historicalVolumeDisplay').textContent = totalSelectedVolume.toLocaleString() + ' yards³';
+                document.getElementById('historicalProfitDisplay').textContent = '$' + totalSelectedProfit.toLocaleString();
+                document.getElementById('historicalMarginDisplay').textContent = 
+                    (totalSelectedRevenue > 0 ? (totalSelectedProfit / totalSelectedRevenue * 100) : 0).toFixed(1) + '%';
+                
+                // Pre-fill projected volume with historical volume
+                document.getElementById('projectedVolume').value = totalSelectedVolume;
+                projectedVolume = totalSelectedVolume;
+            } else if (step === 3) {
+                updateCostProjections();
+            }
+        }
+
+        function calculateGoalMetrics() {
+            profitGoal = parseFloat(document.getElementById('profitGoal').value) || 0;
+            projectedVolume = parseFloat(document.getElementById('projectedVolume').value) || 0;
+            
+            const hasRequiredInputs = profitGoal > 0 && projectedVolume > 0 && totalSelectedRevenue > 0;
+            
+            if (hasRequiredInputs) {
+                // Volume comparison
+                const volumeDifference = projectedVolume - totalSelectedVolume;
+                const volumePercentage = totalSelectedVolume > 0 ? ((volumeDifference / totalSelectedVolume) * 100) : 0;
+                document.getElementById('volumeComparison').textContent = 
+                    (volumeDifference >= 0 ? '+' : '') + volumeDifference.toLocaleString() + ' yards³ ' + 
+                    '(' + (volumePercentage >= 0 ? '+' : '') + volumePercentage.toFixed(1) + '%)';
+                
+                // Profit target comparison
+                const goalDifference = profitGoal - totalSelectedProfit;
+                const goalPercentage = totalSelectedProfit > 0 ? ((goalDifference / totalSelectedProfit) * 100) : 0;
+                document.getElementById('goalComparison').textContent = 
+                    (goalDifference >= 0 ? '+' : '') + '$' + goalDifference.toLocaleString() + 
+                    ' (' + (goalPercentage >= 0 ? '+' : '') + goalPercentage.toFixed(1) + '%)';
+                
+                // Required profit per yard
+                const profitPerYard = profitGoal / projectedVolume;
+                const historicalProfitPerYard = totalSelectedProfit / totalSelectedVolume;
+                document.getElementById('profitPerYard').textContent = 
+                    '$' + profitPerYard.toFixed(2) + '/yard ' +
+                    '(Historical: $' + historicalProfitPerYard.toFixed(2) + '/yard)';
+                
+                // Required margin (assuming same revenue per yard)
+                const avgRevenuePerYard = totalSelectedRevenue / totalSelectedVolume;
+                const projectedRevenue = avgRevenuePerYard * projectedVolume;
+                const requiredMargin = (profitGoal / projectedRevenue * 100);
+                document.getElementById('requiredMargin').textContent = requiredMargin.toFixed(1) + '%';
+                
+                document.getElementById('goalMetrics').style.display = 'block';
+                document.getElementById('toCostProjections').disabled = false;
+            } else {
+                document.getElementById('goalMetrics').style.display = 'none';
+                document.getElementById('toCostProjections').disabled = true;
+            }
+        }
+
+        function updateCostProjections() {
+            // Calculate historical averages
+            const avgManufacturingPerYard = totalSelectedVolume > 0 ? historicalCostBreakdown.manufacturing / totalSelectedVolume : 0;
+            const totalLaborCost = historicalCostBreakdown.labor;
+            const totalFixedCost = historicalCostBreakdown.fixed;
+            
+            // Update previous period display with mixed cost basis
+            document.getElementById('previousCosts').innerHTML = `
+                <div class="cost-item manufacturing">
+                    <span>Concrete Manufacturing:</span>
+                    <span><strong>$${avgManufacturingPerYard.toFixed(2)}/yard</strong><br>
+                    <small>Total: $${historicalCostBreakdown.manufacturing.toLocaleString()}</small></span>
+                </div>
+                <div class="cost-item labor">
+                    <span>Labor Costs:</span>
+                    <span><strong>$${totalLaborCost.toLocaleString()} total</strong><br>
+                    <small>Avg: $${(totalLaborCost/selectedMonths.length).toLocaleString()}/month</small></span>
+                </div>
+                <div class="cost-item fixed">
+                    <span>Fixed Costs:</span>
+                    <span><strong>$${totalFixedCost.toLocaleString()} total</strong><br>
+                    <small>Avg: $${(totalFixedCost/selectedMonths.length).toLocaleString()}/month</small></span>
+                </div>
+                <div class="cost-item" style="border-left-color: #27ae60; font-weight: 600;">
+                    <span><strong>Total Historical Costs:</strong></span>
+                    <span><strong>$${totalSelectedCosts.toLocaleString()}</strong></span>
+                </div>
+            `;
+            
+            // Pre-fill future costs with historical averages
+            document.getElementById('futureManufacturing').value = avgManufacturingPerYard.toFixed(2);
+            document.getElementById('futureLabor').value = totalLaborCost;
+            document.getElementById('futureFixed').value = totalFixedCost;
+            
+            calculateProjections();
+        }
+
+        function calculateProjections() {
+            const manufacturing = parseFloat(document.getElementById('futureManufacturing').value) || 0;
+            const labor = parseFloat(document.getElementById('futureLabor').value) || 0;
+            const fixed = parseFloat(document.getElementById('futureFixed').value) || 0;
+            
+            // Use projected volume for calculations
+            const volumeToUse = projectedVolume > 0 ? projectedVolume : totalSelectedVolume;
+            
+            // Calculate manufacturing total (per-yard * projected volume)
+            const manufacturingTotal = manufacturing * volumeToUse;
+            
+            // Update calculated displays
+            document.getElementById('manufacturingTotal').textContent = `Total: $${manufacturingTotal.toLocaleString()}`;
+            document.getElementById('laborPerYard').textContent = 
+                `Per yard: $${volumeToUse > 0 ? (labor / volumeToUse).toFixed(2) : '0.00'}`;
+            document.getElementById('fixedPerYard').textContent = 
+                `Per yard: $${volumeToUse > 0 ? (fixed / volumeToUse).toFixed(2) : '0.00'}`;
+            
+            const totalProjectedCosts = manufacturingTotal + labor + fixed;
+            document.getElementById('totalFutureCost').textContent = '$' + totalProjectedCosts.toLocaleString();
+            
+            // Calculate projections using projected volume and historical pricing
+            const avgRevenuePerYard = totalSelectedRevenue > 0 && totalSelectedVolume > 0 ? totalSelectedRevenue / totalSelectedVolume : 0;
+            const projectedRevenue = avgRevenuePerYard * volumeToUse;
+            const projectedProfit = projectedRevenue - totalProjectedCosts;
+            const projectedMargin = projectedRevenue > 0 ? (projectedProfit / projectedRevenue * 100) : 0;
+            
+            // Update projection results
+            document.getElementById('projectedRevenue').textContent = '$' + projectedRevenue.toLocaleString();
+            document.getElementById('projectedProfit').textContent = '$' + projectedProfit.toLocaleString();
+            document.getElementById('projectedMargin').textContent = projectedMargin.toFixed(1) + '%';
+            
+            // Goal achievement
+            if (profitGoal > 0) {
+                const goalAchievement = ((projectedProfit / profitGoal) * 100);
+                const goalText = goalAchievement >= 100 ? 
+                    `✅ Goal Exceeded (${goalAchievement.toFixed(1)}%)` : 
+                    `⚠️ Below Goal (${goalAchievement.toFixed(1)}%)`;
+                document.getElementById('goalAchievement').textContent = goalText;
+            } else {
+                document.getElementById('goalAchievement').textContent = 'No goal set';
+            }
+        }
+
+        function generateReport() {
+            const manufacturing = parseFloat(document.getElementById('futureManufacturing').value) || 0;
+            const labor = parseFloat(document.getElementById('futureLabor').value) || 0;
+            const fixed = parseFloat(document.getElementById('futureFixed').value) || 0;
+            
+            const volumeToUse = projectedVolume > 0 ? projectedVolume : totalSelectedVolume;
+            const manufacturingTotal = manufacturing * volumeToUse;
+            const totalProjectedCosts = manufacturingTotal + labor + fixed;
+            
+            const avgRevenuePerYard = totalSelectedRevenue > 0 && totalSelectedVolume > 0 ? totalSelectedRevenue / totalSelectedVolume : 0;
+            const projectedRevenue = avgRevenuePerYard * volumeToUse;
+            const projectedProfit = projectedRevenue - totalProjectedCosts;
+            const projectedMargin = projectedRevenue > 0 ? (projectedProfit / projectedRevenue * 100) : 0;
+
+            alert(`📊 CONCRETE PROFIT ANALYSIS REPORT\n\n` +
+                  `📅 Analysis Period: ${selectedMonths.join(', ')}\n\n` +
+                  
+                  `📈 HISTORICAL PERFORMANCE:\n` +
+                  `• Historical Volume: ${totalSelectedVolume.toLocaleString()} yards³\n` +
+                  `• Historical Revenue: $${totalSelectedRevenue.toLocaleString()}\n` +
+                  `• Historical Costs: $${totalSelectedCosts.toLocaleString()}\n` +
+                  `• Historical Profit: $${totalSelectedProfit.toLocaleString()}\n` +
+                  `• Historical Margin: ${((totalSelectedProfit/totalSelectedRevenue)*100).toFixed(1)}%\n\n` +
+                  
+                  `🎯 FUTURE PROJECTIONS:\n` +
+                  `• Projected Volume: ${volumeToUse.toLocaleString()} yards³ (${volumeToUse === totalSelectedVolume ? 'same as historical' : (volumeToUse > totalSelectedVolume ? '+' : '') + (volumeToUse - totalSelectedVolume).toLocaleString() + ' vs historical'})\n` +
+                  `• Profit Goal: $${profitGoal.toLocaleString()}\n\n` +
+                  
+                  `💰 MIXED COST BASIS PROJECTIONS:\n` +
+                  `• Manufacturing: $${manufacturing.toFixed(2)}/yard (Total: $${manufacturingTotal.toLocaleString()})\n` +
+                  `• Labor: $${labor.toLocaleString()} total (Per yard: $${volumeToUse > 0 ? (labor/volumeToUse).toFixed(2) : '0.00'})\n` +
+                  `• Fixed: $${fixed.toLocaleString()} total (Per yard: $${volumeToUse > 0 ? (fixed/volumeToUse).toFixed(2) : '0.00'})\n` +
+                  `• Total Projected Costs: $${totalProjectedCosts.toLocaleString()}\n\n` +
+                  
+                  `📊 PROJECTED RESULTS:\n` +
+                  `• Projected Revenue: $${projectedRevenue.toLocaleString()}\n` +
+                  `• Projected Profit: $${projectedProfit.toLocaleString()}\n` +
+                  `• Projected Margin: ${projectedMargin.toFixed(1)}%\n` +
+                  `• Goal Achievement: ${profitGoal > 0 ? ((projectedProfit/profitGoal)*100).toFixed(1) + '%' : 'No goal set'}\n\n` +
+                  
+                  `🔍 KEY INSIGHTS:\n` +
+                  `• Manufacturing costs are calculated per-yard for pricing\n` +
+                  `• Labor and Fixed costs are budgeted as lump sums\n` +
+                  `• Projected volume: ${volumeToUse.toLocaleString()} yards³\n` +
+                  `• This mixed approach aligns with concrete industry practices`);
+        }
+
+        function setupEventListeners() {
+            // Add any additional event listeners here
+        }
+
+        // Initialize when page loads
+        window.onload = init;
+    </script>
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concrete Sales & Profit Analyzer - Redesigned</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #3498db;
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .step-header {
+            background: #3498db;
+            color: white;
+            padding: 15px 25px;
+            margin: -30px -30px 25px -30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .month-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .month-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .month-card:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .month-card.selected {
+            border-color: #3498db;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .month-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .volume-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .month-card.selected .volume-display {
+            color: white;
+        }
+
+        .historical-summary {
+            margin: 30px 0;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .summary-table th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .summary-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .summary-table .totals-row {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        .summary-table .totals-row td {
+            border-bottom: none;
+        }
+
+        .cost-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .cost-column {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cost-column h3 {
+            background: #34495e;
+            color: white;
+            margin: -25px -25px 20px -25px;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+        }
+
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .cost-item:last-child {
+            border-bottom: none;
+        }
+
+        .cost-input {
+            padding: 10px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 120px;
+            text-align: right;
+        }
+
+        .cost-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .goal-input {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .goal-input label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .goal-input input {
+            padding: 15px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            text-align: center;
+            width: 200px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+
+        .metric {
+            display: inline-block;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .cost-table {
+                font-size: 0.9rem;
+            }
+            
+            .cost-input-table {
+                width: 100px;
+                font-size: 0.9rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Concrete Sales & Profit Analyzer</h1>
+            <p>Redesigned Workflow: Historical Analysis → Goal Setting → Cost Projections</p>
+        </div>
+
+        <div class="content">
+            <!-- Step 1: Month Selection -->
+            <div class="step active" id="step1">
+                <div class="step-header">Step 1: Select Historical Months for Analysis</div>
+                
+                <p>Choose the months you want to analyze. Selected months will be displayed in a summary table showing individual and combined performance.</p>
+                
+                <div class="month-selection" id="monthSelection">
+                    <!-- Month cards will be generated by JavaScript -->
+                </div>
+
+                <div class="historical-summary" id="historicalSummary" style="display: none;">
+                    <h3>📊 Historical Performance Summary</h3>
+                    <div class="highlight" id="totalsDisplay">
+                        <!-- Totals will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="navigation">
+                    <div></div>
+                    <button class="btn" onclick="goToStep(2)" id="nextToStep2" disabled>
+                        View Historical Results & Set Goals →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 2: Historical Results & Goal Setting -->
+            <div class="step" id="step2">
+                <div class="step-header">Step 2: Historical Results & Profitability Goal</div>
+                
+                <div class="highlight" id="historicalHighlight">
+                    <!-- Historical summary will be displayed here -->
+                </div>
+                
+                <div class="highlight" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
+                    <div class="metric">Total Historical Profit: <span id="totalHistoricalProfit">$0</span></div>
+                    <div class="metric">Selected Period: <span id="selectedPeriodInfo">No months selected</span></div>
+                </div>
+
+                <div class="goal-input">
+                    <label for="profitGoal">Set Your Total Profitability Goal for Selected Months ($):</label>
+                    <input type="number" id="profitGoal" placeholder="e.g., 50000" min="0" step="1">
+                    <small style="display: block; margin-top: 10px; color: #666;">Enter the total profit you want to achieve across all selected months</small>
+                </div>
+
+                <p>Based on your historical data above, set a realistic total profitability goal. This represents your target profit across all selected months and will be used for cost analysis in the next step.</p>
+
+                <div class="navigation">
+                    <button class="btn" onclick="goToStep(1)">← Back to Month Selection</button>
+                    <button class="btn" onclick="goToStep(3)" id="nextToStep3" disabled>
+                        Configure Cost Projections →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step 3: Cost Projections -->
+            <div class="step" id="step3">
+                <div class="step-header">Step 3: Cost Projections - Previous vs Future Comparison</div>
+                
+                <p>Compare your historical costs with projected future costs. This analysis shows cost structure changes but does not include pricing modifications (pricing will be handled in a future module).</p>
+
+                <div class="cost-comparison">
+                    <div class="cost-column">
+                        <h3>📋 Previous Period (Historical Average)</h3>
+                        <div id="previousCosts">
+                            <!-- Previous costs will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="cost-column">
+                        <h3>🎯 Future Period (Your Projections)</h3>
+                        <div id="futureCosts">
+                            <div class="cost-item">
+                                <span>Concrete Manufacturing ($/yard):</span>
+                                <input type="number" class="cost-input" id="futureManufacturing" step="0.01" placeholder="0.00">
+                            </div>
+                            <div class="cost-item">
+                                <span>Labor Costs ($/yard):</span>
+                                <input type="number" class="cost-input" id="futureLabor" step="0.01" placeholder="0.00">
+                            </div>
+                            <div class="cost-item">
+                                <span>Fixed Costs ($/yard):</span>
+                                <input type="number" class="cost-input" id="futureFixed" step="0.01" placeholder="0.00">
+                            </div>
+                            <div class="cost-item">
+                                <span><strong>Total Cost per Yard:</strong></span>
+                                <span id="totalFutureCost"><strong>$0.00</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight" id="projectionResults">
+                    <div class="metric">Total Future Cost: <span id="totalProjectedCost">$0.00</span></div>
+                    <div class="metric">Cost Comparison: <span id="costComparison">Configure costs above</span></div>
+                    <div class="metric">Goal Status: <span id="goalStatus">Set costs above</span></div>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn" onclick="goToStep(2)">← Back to Goal Setting</button>
+                    <button class="btn" onclick="generateReport()">📊 Generate Full Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample historical data (in a real application, this would come from a database)
+        const historicalData = {
+            'Jan 2024': { volume: 1250, revenue: 125000, costs: 87500 },
+            'Feb 2024': { volume: 980, revenue: 98000, costs: 68600 },
+            'Mar 2024': { volume: 1450, revenue: 145000, costs: 101500 },
+            'Apr 2024': { volume: 1320, revenue: 132000, costs: 92400 },
+            'May 2024': { volume: 1680, revenue: 168000, costs: 117600 },
+            'Jun 2024': { volume: 1520, revenue: 152000, costs: 106400 },
+            'Jul 2024': { volume: 1750, revenue: 175000, costs: 122500 },
+            'Aug 2024': { volume: 1630, revenue: 163000, costs: 114100 },
+            'Sep 2024': { volume: 1420, revenue: 142000, costs: 99400 },
+            'Oct 2024': { volume: 1290, revenue: 129000, costs: 90300 },
+            'Nov 2024': { volume: 1150, revenue: 115000, costs: 80500 },
+            'Dec 2024': { volume: 1100, revenue: 110000, costs: 77000 }
+        };
+
+        let selectedMonths = [];
+        let currentStep = 1;
+
+        // Initialize the application
+        function init() {
+            generateMonthCards();
+            setupEventListeners();
+        }
+
+        function generateMonthCards() {
+            const monthSelection = document.getElementById('monthSelection');
+            monthSelection.innerHTML = '';
+
+            Object.keys(historicalData).forEach(month => {
+                const data = historicalData[month];
+                const card = document.createElement('div');
+                card.className = 'month-card';
+                card.onclick = () => toggleMonth(month, card);
+                
+                card.innerHTML = `
+                    <h3>${month}</h3>
+                    <div class="volume-display">${data.volume.toLocaleString()} yards³</div>
+                    <p>Revenue: $${data.revenue.toLocaleString()}</p>
+                    <p>Profit: $${(data.revenue - data.costs).toLocaleString()}</p>
+                `;
+                
+                monthSelection.appendChild(card);
+            });
+        }
+
+        function toggleMonth(month, cardElement) {
+            if (selectedMonths.includes(month)) {
+                selectedMonths = selectedMonths.filter(m => m !== month);
+                cardElement.classList.remove('selected');
+            } else {
+                selectedMonths.push(month);
+                cardElement.classList.add('selected');
+            }
+
+            updateHistoricalSummary();
+            updateNavigationButtons();
+        }
+
+        function updateHistoricalSummary() {
+            const summaryDiv = document.getElementById('historicalSummary');
+            const totalsDisplay = document.getElementById('totalsDisplay');
+
+            if (selectedMonths.length === 0) {
+                summaryDiv.style.display = 'none';
+                return;
+            }
+
+            summaryDiv.style.display = 'block';
+
+            // Calculate totals
+            let totals = {
+                volume: 0,
+                revenue: 0,
+                costs: 0,
+                profit: 0
+            };
+
+            selectedMonths.forEach(month => {
+                const data = historicalData[month];
+                totals.volume += data.volume;
+                totals.revenue += data.revenue;
+                totals.costs += data.costs;
+                totals.profit += (data.revenue - data.costs);
+            });
+
+            const avgProfitPerYard = totals.profit / totals.volume;
+
+            // Update totals display only
+            totalsDisplay.innerHTML = `
+                <div class="metric">Total Volume: ${totals.volume.toLocaleString()} yards³</div>
+                <div class="metric">Total Revenue: $${totals.revenue.toLocaleString()}</div>
+                <div class="metric">Total Costs: $${totals.costs.toLocaleString()}</div>
+                <div class="metric">Total Profit: $${totals.profit.toLocaleString()}</div>
+                <div class="metric">Average Profit/Yard: $${avgProfitPerYard.toFixed(2)}</div>
+            `;
+        }
+
+        function updateNavigationButtons() {
+            const nextToStep2 = document.getElementById('nextToStep2');
+            nextToStep2.disabled = selectedMonths.length === 0;
+        }
+
+        function goToStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            
+            // Show target step
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+
+            if (step === 2) {
+                updateStep2Display();
+            } else if (step === 3) {
+                updateStep3Display();
+            }
+        }
+
+        function updateStep2Display() {
+            if (selectedMonths.length === 0) return;
+
+            // Calculate historical totals
+            let totals = { volume: 0, revenue: 0, costs: 0 };
+            selectedMonths.forEach(month => {
+                const data = historicalData[month];
+                totals.volume += data.volume;
+                totals.revenue += data.revenue;
+                totals.costs += data.costs;
+            });
+
+            const totalProfit = totals.revenue - totals.costs;
+            const avgProfitPerYard = totalProfit / totals.volume;
+            const avgPricePerYard = totals.revenue / totals.volume;
+            const avgCostPerYard = totals.costs / totals.volume;
+
+            const highlight = document.getElementById('historicalHighlight');
+            highlight.innerHTML = `
+                <div class="metric">Total Volume: ${totals.volume.toLocaleString()} yards³</div>
+                <div class="metric">Average Price: $${avgPricePerYard.toFixed(2)}/yard</div>
+                <div class="metric">Average Cost: $${avgCostPerYard.toFixed(2)}/yard</div>
+                <div class="metric">Average Profit: $${avgProfitPerYard.toFixed(2)}/yard</div>
+            `;
+
+            // Update total historical profit display
+            document.getElementById('totalHistoricalProfit').textContent = `$${totalProfit.toLocaleString()}`;
+            document.getElementById('selectedPeriodInfo').textContent = `${selectedMonths.length} months (${selectedMonths.join(', ')})`;
+        }
+
+        function updateStep3Display() {
+            if (selectedMonths.length === 0) return;
+
+            // Calculate historical cost breakdown
+            let totals = { volume: 0, costs: 0 };
+            selectedMonths.forEach(month => {
+                const data = historicalData[month];
+                totals.volume += data.volume;
+                totals.costs += data.costs;
+            });
+
+            const avgCostPerYard = totals.costs / totals.volume;
+            
+            // Estimate cost breakdown (in a real app, this would be actual data)
+            const manufacturing = avgCostPerYard * 0.6; // ~60% manufacturing
+            const labor = avgCostPerYard * 0.25; // ~25% labor
+            const fixed = avgCostPerYard * 0.15; // ~15% fixed costs
+
+            // Update previous costs display
+            const previousCosts = document.getElementById('previousCosts');
+            previousCosts.innerHTML = `
+                <div class="cost-item">
+                    <span>Concrete Manufacturing ($/yard):</span>
+                    <span><strong>$${manufacturing.toFixed(2)}</strong></span>
+                </div>
+                <div class="cost-item">
+                    <span>Labor Costs ($/yard):</span>
+                    <span><strong>$${labor.toFixed(2)}</strong></span>
+                </div>
+                <div class="cost-item">
+                    <span>Fixed Costs ($/yard):</span>
+                    <span><strong>$${fixed.toFixed(2)}</strong></span>
+                </div>
+                <div class="cost-item">
+                    <span><strong>Total Cost per Yard:</strong></span>
+                    <span><strong>$${avgCostPerYard.toFixed(2)}</strong></span>
+                </div>
+            `;
+
+            // Pre-fill future costs with historical values
+            document.getElementById('futureManufacturing').value = manufacturing.toFixed(2);
+            document.getElementById('futureLabor').value = labor.toFixed(2);
+            document.getElementById('futureFixed').value = fixed.toFixed(2);
+
+            updateProjections();
+        }
+
+        function setupEventListeners() {
+            // Goal input listener
+            document.getElementById('profitGoal').addEventListener('input', function() {
+                const nextToStep3 = document.getElementById('nextToStep3');
+                nextToStep3.disabled = !this.value || this.value <= 0;
+            });
+
+            // Future cost input listeners
+            ['futureManufacturing', 'futureLabor', 'futureFixed'].forEach(id => {
+                document.getElementById(id).addEventListener('input', updateProjections);
+            });
+        }
+
+        function updateProjections() {
+            const manufacturing = parseFloat(document.getElementById('futureManufacturing').value) || 0;
+            const labor = parseFloat(document.getElementById('futureLabor').value) || 0;
+            const fixed = parseFloat(document.getElementById('futureFixed').value) || 0;
+            const profitGoal = parseFloat(document.getElementById('profitGoal').value) || 0;
+
+            const totalCostPerYard = manufacturing + labor + fixed;
+            
+            // Calculate total volume from selected months to get total projected cost
+            let totalVolume = 0;
+            selectedMonths.forEach(month => {
+                totalVolume += historicalData[month].volume;
+            });
+            
+            const totalProjectedCost = totalCostPerYard * totalVolume;
+
+            // Calculate historical costs for comparison
+            let historicalTotalCost = 0;
+            selectedMonths.forEach(month => {
+                historicalTotalCost += historicalData[month].costs;
+            });
+
+            const costDifference = totalProjectedCost - historicalTotalCost;
+            const costComparisonText = costDifference > 0 ? 
+                `+$${costDifference.toLocaleString()} vs Historical` : 
+                `-$${Math.abs(costDifference).toLocaleString()} vs Historical`;
+
+            // Update displays
+            document.getElementById('totalFutureCost').innerHTML = `<strong>$${totalCostPerYard.toFixed(2)}</strong>`;
+            document.getElementById('totalProjectedCost').textContent = `$${totalProjectedCost.toLocaleString()}`;
+            document.getElementById('costComparison').textContent = costComparisonText;
+            
+            const goalStatus = profitGoal > 0 && totalCostPerYard > 0 ? 
+                `Total goal: $${profitGoal.toLocaleString()}` : 
+                '⚠️ Set goal and costs above';
+            document.getElementById('goalStatus').textContent = goalStatus;
+        }
+
+        function generateReport() {
+            alert('Full report generation would be implemented here, showing detailed comparison of historical vs projected performance across all selected months.');
+        }
+
+        // Initialize the application when the page loads
+        init();
+    </script>
+</body>
+</html>
