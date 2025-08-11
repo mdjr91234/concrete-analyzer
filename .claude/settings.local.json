@@ -7,7 +7,12 @@
       "Bash(start concrete-analyzer-redesign.html)",
       "Bash(start concrete-analyzer-mixed-cost-basis.html)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(start C:UsersMarioDocumentsGitHubtake4concrete-analyzer-mixed-cost-basis.html)",
+      "Bash(start \"C:\\Users\\Mario\\Documents\\GitHub\\take4\\take2-customer-pricing-viewer.html\")"
     ],
     "deny": []
   }

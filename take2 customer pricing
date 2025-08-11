@@ -1,0 +1,212 @@
+import React, { useState, useMemo } from "react";
+
+export default function ClientCategoryTool() {
+  const initialClients = [
+    { id: 1, name: "Client A", unitPrice: 10, profitMargin: 5, volume: 100 },
+    { id: 2, name: "Client B", unitPrice: 20, profitMargin: 8, volume: 2000 },
+    { id: 3, name: "Client C", unitPrice: 15, profitMargin: 6, volume: 2500 },
+    { id: 4, name: "Client D", unitPrice: 8, profitMargin: 3, volume: 80 },
+    { id: 5, name: "Client E", unitPrice: 25, profitMargin: 12, volume: 1500 },
+    { id: 6, name: "Client F", unitPrice: 18, profitMargin: 7, volume: 900 },
+    { id: 7, name: "Client G", unitPrice: 12, profitMargin: 4, volume: 3000 },
+    { id: 8, name: "Client H", unitPrice: 30, profitMargin: 15, volume: 500 },
+    { id: 9, name: "Client I", unitPrice: 22, profitMargin: 9, volume: 1800 },
+    { id: 10, name: "Client J", unitPrice: 14, profitMargin: 6, volume: 2200 },
+    { id: 11, name: "Client K", unitPrice: 16, profitMargin: 8, volume: 1200 },
+    { id: 12, name: "Client L", unitPrice: 28, profitMargin: 14, volume: 700 },
+    { id: 13, name: "Client M", unitPrice: 11, profitMargin: 5, volume: 1600 },
+    { id: 14, name: "Client N", unitPrice: 35, profitMargin: 18, volume: 400 },
+    { id: 15, name: "Client O", unitPrice: 19, profitMargin: 9, volume: 1100 },
+    { id: 16, name: "Client P", unitPrice: 13, profitMargin: 6, volume: 2800 },
+    { id: 17, name: "Client Q", unitPrice: 24, profitMargin: 11, volume: 950 },
+    { id: 18, name: "Client R", unitPrice: 17, profitMargin: 7, volume: 1900 },
+    { id: 19, name: "Client S", unitPrice: 26, profitMargin: 13, volume: 800 },
+    { id: 20, name: "Client T", unitPrice: 21, profitMargin: 10, volume: 1300 },
+    { id: 21, name: "Alpha Corp", unitPrice: 32, profitMargin: 16, volume: 600 },
+    { id: 22, name: "Beta Industries", unitPrice: 9, profitMargin: 4, volume: 3500 },
+    { id: 23, name: "Gamma Solutions", unitPrice: 23, profitMargin: 11, volume: 1050 },
+    { id: 24, name: "Delta Systems", unitPrice: 27, profitMargin: 13, volume: 750 },
+    { id: 25, name: "Epsilon Ltd", unitPrice: 15, profitMargin: 7, volume: 2100 },
+    { id: 26, name: "Zeta Enterprises", unitPrice: 33, profitMargin: 17, volume: 450 },
+    { id: 27, name: "Eta Manufacturing", unitPrice: 12, profitMargin: 5, volume: 2700 },
+    { id: 28, name: "Theta Group", unitPrice: 29, profitMargin: 14, volume: 650 },
+    { id: 29, name: "Iota Partners", unitPrice: 18, profitMargin: 8, volume: 1400 },
+    { id: 30, name: "Kappa Holdings", unitPrice: 31, profitMargin: 15, volume: 550 },
+    { id: 31, name: "Lambda Co", unitPrice: 14, profitMargin: 6, volume: 2400 },
+    { id: 32, name: "Mu Dynamics", unitPrice: 20, profitMargin: 9, volume: 1250 },
+    { id: 33, name: "Nu Technologies", unitPrice: 16, profitMargin: 7, volume: 1750 },
+    { id: 34, name: "Xi Innovations", unitPrice: 34, profitMargin: 17, volume: 400 },
+    { id: 35, name: "Omicron Ventures", unitPrice: 11, profitMargin: 5, volume: 3200 },
+    { id: 36, name: "Pi Solutions", unitPrice: 25, profitMargin: 12, volume: 850 },
+    { id: 37, name: "Rho Services", unitPrice: 19, profitMargin: 9, volume: 1350 },
+    { id: 38, name: "Sigma Corp", unitPrice: 28, profitMargin: 14, volume: 700 },
+    { id: 39, name: "Tau Industries", unitPrice: 13, profitMargin: 6, volume: 2600 },
+    { id: 40, name: "Upsilon Group", unitPrice: 22, profitMargin: 10, volume: 1000 },
+    { id: 41, name: "Phi Enterprises", unitPrice: 30, profitMargin: 15, volume: 500 },
+    { id: 42, name: "Chi Systems", unitPrice: 17, profitMargin: 8, volume: 1800 },
+    { id: 43, name: "Psi Partners", unitPrice: 24, profitMargin: 11, volume: 900 },
+    { id: 44, name: "Omega Holdings", unitPrice: 36, profitMargin: 18, volume: 350 },
+    { id: 45, name: "Apex Manufacturing", unitPrice: 10, profitMargin: 4, volume: 4000 },
+    { id: 46, name: "Vertex Solutions", unitPrice: 26, profitMargin: 12, volume: 800 },
+    { id: 47, name: "Zenith Corp", unitPrice: 21, profitMargin: 10, volume: 1150 },
+    { id: 48, name: "Prime Industries", unitPrice: 15, profitMargin: 7, volume: 2300 },
+    { id: 49, name: "Elite Services", unitPrice: 37, profitMargin: 19, volume: 300 },
+    { id: 50, name: "Metro Dynamics", unitPrice: 18, profitMargin: 8, volume: 1650 }
+  ];
+
+  const [clients, setClients] = useState(initialClients);
+  const [categories, setCategories] = useState([]);
+  const [unassignedClients, setUnassignedClients] = useState(initialClients);
+  const [newCategory, setNewCategory] = useState("");
+  const [filters, setFilters] = useState({ unitPrice: "", profitMargin: "", volume: "" });
+
+  const percentAssigned = useMemo(() => {
+    return ((clients.length - unassignedClients.length) / clients.length) * 100;
+  }, [clients, unassignedClients]);
+
+  const filteredClients = useMemo(() => {
+    return unassignedClients.filter(client => {
+      return (
+        (filters.unitPrice === "" || client.unitPrice >= Number(filters.unitPrice)) &&
+        (filters.profitMargin === "" || client.profitMargin >= Number(filters.profitMargin)) &&
+        (filters.volume === "" || client.volume >= Number(filters.volume))
+      );
+    });
+  }, [filters, unassignedClients]);
+
+  function assignClientsToCategory(clientsToAssign, categoryName) {
+    setCategories(prev => {
+      const category = prev.find(cat => cat.name === categoryName);
+      if (category) {
+        category.clients.push(...clientsToAssign);
+      } else {
+        prev.push({ name: categoryName, clients: [...clientsToAssign] });
+      }
+      return [...prev];
+    });
+    setUnassignedClients(prev => prev.filter(c => !clientsToAssign.includes(c)));
+  }
+
+  return (
+    <div className="p-4 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Client Category Tool</h1>
+
+      <div className="mb-4">
+        <input
+          className="border p-2 mr-2"
+          placeholder="New Category Name"
+          value={newCategory}
+          onChange={e => setNewCategory(e.target.value)}
+        />
+        <button
+          className="bg-blue-500 text-white px-3 py-2 rounded"
+          onClick={() => {
+            if (newCategory.trim()) {
+              setCategories(prev => [...prev, { name: newCategory, clients: [] }]);
+              setNewCategory("");
+            }
+          }}
+        >
+          Add Category
+        </button>
+      </div>
+
+      <div className="mb-4 flex gap-2">
+        <input
+          type="number"
+          className="border p-2"
+          placeholder="Min Unit Price"
+          value={filters.unitPrice}
+          onChange={e => setFilters({ ...filters, unitPrice: e.target.value })}
+        />
+        <input
+          type="number"
+          className="border p-2"
+          placeholder="Min Profit Margin"
+          value={filters.profitMargin}
+          onChange={e => setFilters({ ...filters, profitMargin: e.target.value })}
+        />
+        <input
+          type="number"
+          className="border p-2"
+          placeholder="Min Volume"
+          value={filters.volume}
+          onChange={e => setFilters({ ...filters, volume: e.target.value })}
+        />
+      </div>
+
+      <div className="mb-4">
+        <div className="bg-gray-200 h-4 rounded overflow-hidden">
+          <div
+            className="bg-green-500 h-4"
+            style={{ width: `${percentAssigned}%` }}
+          />
+        </div>
+        <p>{percentAssigned.toFixed(1)}% Assigned</p>
+      </div>
+
+      <h2 className="text-xl font-semibold mb-2">Filtered Clients</h2>
+      <button
+        className="bg-purple-500 text-white px-3 py-1 rounded mb-4"
+        onClick={() => {
+          if (categories.length > 0 && newCategory.trim() === "" && categories[0]) {
+            assignClientsToCategory(filteredClients, categories[0].name);
+          } else if (newCategory.trim()) {
+            assignClientsToCategory(filteredClients, newCategory);
+            setCategories(prev => [...prev, { name: newCategory, clients: filteredClients }]);
+            setNewCategory("");
+          }
+        }}
+      >
+        Assign All Filtered to Selected Category
+      </button>
+
+      <table className="w-full border mb-4">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="p-2 border">Name</th>
+            <th className="p-2 border">Unit Price</th>
+            <th className="p-2 border">Profit Margin</th>
+            <th className="p-2 border">Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredClients.map(client => (
+            <tr key={client.id}>
+              <td className="border p-2">{client.name}</td>
+              <td className="border p-2">{client.unitPrice}</td>
+              <td className="border p-2">{client.profitMargin}</td>
+              <td className="border p-2">{client.volume}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {categories.map(cat => (
+        <div key={cat.name} className="mb-6">
+          <h3 className="text-lg font-semibold mb-2">{cat.name}</h3>
+          <table className="w-full border">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="p-2 border">Name</th>
+                <th className="p-2 border">Unit Price</th>
+                <th className="p-2 border">Profit Margin</th>
+                <th className="p-2 border">Volume</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cat.clients.map(c => (
+                <tr key={c.id}>
+                  <td className="border p-2">{c.name}</td>
+                  <td className="border p-2">{c.unitPrice}</td>
+                  <td className="border p-2">{c.profitMargin}</td>
+                  <td className="border p-2">{c.volume}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+  );
+}

@@ -308,6 +308,476 @@
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
 
+        /* Step 5: Customer Pricing Adjustments Styles */
+        .profit-gap-summary {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .gap-header h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .gap-indicator {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        .gap-current, .gap-target, .gap-difference {
+            padding: 15px;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #e9ecef;
+        }
+
+        .gap-current {
+            border-left: 4px solid #3498db;
+        }
+
+        .gap-target {
+            border-left: 4px solid #2ecc71;
+        }
+
+        .gap-difference {
+            border-left: 4px solid #e74c3c;
+        }
+
+        .gap-positive {
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .gap-negative {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .analytics-overview {
+            margin: 30px 0;
+        }
+
+        .analytics-overview h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #3498db;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .bucket-management {
+            margin: 30px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #7f8c8d, #6c757d);
+            box-shadow: 0 8px 25px rgba(149, 165, 166, 0.4);
+        }
+
+        .buckets-container {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            min-height: 200px;
+            padding: 20px;
+        }
+
+        .empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 160px;
+            color: #7f8c8d;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .bucket-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .bucket-card:hover {
+            transform: translateX(5px);
+            border-color: #3498db;
+        }
+
+        .bucket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .bucket-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .bucket-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .bucket-criteria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .criteria-item {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #34495e;
+        }
+
+        .bucket-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .assignment-progress {
+            margin: 30px 0;
+        }
+
+        .assignment-progress h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .progress-container {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-stats {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .overlap-panel {
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .overlap-panel h3 {
+            color: #c53030;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .overlaps-container {
+            margin-top: 15px;
+        }
+
+        .overlap-item {
+            background: white;
+            border: 1px solid #feb2b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .overlap-customer {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .overlap-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .overlap-option {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .overlap-option:hover {
+            background: #e3f2fd;
+            border-color: #3498db;
+        }
+
+        .overlap-option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .pricing-impact {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .pricing-impact h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .impact-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .impact-stat {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .impact-stat label {
+            display: block;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .impact-stat span {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #3498db;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #e74c3c;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .criteria-section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .criteria-section h4 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .range-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .adjustment-inputs {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .bulk-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            color: #1976d2;
+        }
+
         @media (max-width: 768px) {
             .cost-comparison {
                 grid-template-columns: 1fr;
@@ -509,8 +979,224 @@
 
                 <div class="navigation">
                     <button class="btn" onclick="goToStep(3)">← Back to Cost Projections</button>
+                    <button class="btn" id="continueToCustomerPricing" onclick="goToStep(5)" disabled>Continue to Customer Pricing →</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Customer Pricing Adjustments -->
+            <div class="step" id="step5">
+                <div class="step-header">Step 5: Customer Pricing Adjustments</div>
+                
+                <p>Optimize pricing strategy by categorizing customers and applying targeted adjustments to achieve profit goals.</p>
+
+                <!-- Profit Gap Summary -->
+                <div class="profit-gap-summary">
+                    <div class="gap-header">
+                        <h3>Profit Goal Analysis</h3>
+                        <div class="gap-indicator" id="profitGapIndicator">
+                            <div class="gap-current">
+                                <label>Current Projected Profit:</label>
+                                <span id="currentProjectedProfit">$0.00</span>
+                            </div>
+                            <div class="gap-target">
+                                <label>Target Profit Goal:</label>
+                                <span id="targetProfitGoal">$0.00</span>
+                            </div>
+                            <div class="gap-difference">
+                                <label>Gap to Close:</label>
+                                <span id="profitGapAmount" class="gap-negative">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Analytics Overview -->
+                <div class="analytics-overview">
+                    <h3>Customer Analytics Overview</h3>
+                    <div class="overview-stats">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalCustomers">0</div>
+                            <div class="stat-label">Total Customers</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgCustomerVolume">0</div>
+                            <div class="stat-label">Avg. Volume (yards)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgCustomerPrice">$0</div>
+                            <div class="stat-label">Avg. Price/Yard</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgCustomerMargin">0%</div>
+                            <div class="stat-label">Avg. Profit Margin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bucket Management Section -->
+                <div class="bucket-management">
+                    <div class="section-header">
+                        <h3>Customer Buckets</h3>
+                        <button class="btn btn-primary" onclick="showCreateBucketModal()">+ Create New Bucket</button>
+                    </div>
+                    
+                    <div id="bucketsList" class="buckets-container">
+                        <div class="empty-state">
+                            <p>No customer buckets created yet. Create your first bucket to start categorizing customers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Assignment Progress -->
+                <div class="assignment-progress">
+                    <h3>Categorization Progress</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                        <div class="progress-stats">
+                            <span id="categorizedCount">0</span> of <span id="totalCustomerCount">0</span> customers categorized 
+                            (<span id="categorizationPercent">0%</span>)
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" id="bulkAssignBtn" onclick="showBulkAssignModal()" disabled>
+                        Bulk Assign Remaining Customers
+                    </button>
+                </div>
+
+                <!-- Overlap Resolution Panel -->
+                <div id="overlapPanel" class="overlap-panel" style="display: none;">
+                    <h3>Resolve Customer Conflicts</h3>
+                    <p>Some customers meet criteria for multiple buckets. Please resolve these conflicts:</p>
+                    <div id="overlapsList" class="overlaps-container"></div>
+                </div>
+
+                <!-- Pricing Impact Summary -->
+                <div class="pricing-impact">
+                    <h3>Pricing Adjustments Impact</h3>
+                    <div class="impact-summary">
+                        <div class="impact-stat">
+                            <label>Revenue Impact:</label>
+                            <span id="revenueImpact">$0.00</span>
+                        </div>
+                        <div class="impact-stat">
+                            <label>New Projected Profit:</label>
+                            <span id="newProjectedProfit">$0.00</span>
+                        </div>
+                        <div class="impact-stat">
+                            <label>Goal Achievement:</label>
+                            <span id="goalAchievement">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn" onclick="goToStep(4)">← Back to Summary</button>
+                    <button class="btn" id="continueToFinalResults" onclick="goToStep(6)" disabled>Continue to Final Results →</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Final Results (Placeholder) -->
+            <div class="step" id="step6">
+                <div class="step-header">Step 6: Final Results & Implementation Plan</div>
+                
+                <p>Complete analysis with pricing optimization results and implementation recommendations.</p>
+
+                <div class="highlight">
+                    <h3>🚧 Coming Soon</h3>
+                    <p>Step 6 will include:</p>
+                    <ul>
+                        <li>Final revenue and profit projections with customer pricing adjustments</li>
+                        <li>Implementation timeline and action plan</li>
+                        <li>Customer communication templates</li>
+                        <li>Risk assessment and monitoring recommendations</li>
+                        <li>Export and reporting features</li>
+                    </ul>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn" onclick="goToStep(5)">← Back to Customer Pricing</button>
                     <button class="btn" onclick="generateReport()">📊 Generate Full Report</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="createBucketModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Customer Bucket</h3>
+                <span class="close" onclick="closeCreateBucketModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="bucketForm">
+                    <div class="form-group">
+                        <label for="bucketName">Bucket Name:</label>
+                        <input type="text" id="bucketName" required placeholder="e.g., High Volume Premium">
+                    </div>
+                    
+                    <div class="criteria-section">
+                        <h4>Volume Criteria (Cubic Yards)</h4>
+                        <div class="range-inputs">
+                            <input type="number" id="volumeMin" placeholder="Min Volume" min="0" step="0.1">
+                            <input type="number" id="volumeMax" placeholder="Max Volume (leave empty for unlimited)" min="0" step="0.1">
+                        </div>
+                    </div>
+                    
+                    <div class="criteria-section">
+                        <h4>Price Criteria ($/Yard)</h4>
+                        <div class="range-inputs">
+                            <input type="number" id="priceMin" placeholder="Min Price" min="0" step="0.01">
+                            <input type="number" id="priceMax" placeholder="Max Price (leave empty for unlimited)" min="0" step="0.01">
+                        </div>
+                    </div>
+                    
+                    <div class="criteria-section">
+                        <h4>Profit Margin Criteria (%)</h4>
+                        <div class="range-inputs">
+                            <input type="number" id="profitMarginMin" placeholder="Min Margin" step="0.1">
+                            <input type="number" id="profitMarginMax" placeholder="Max Margin (leave empty for unlimited)" step="0.1">
+                        </div>
+                    </div>
+                    
+                    <div class="criteria-section">
+                        <h4>Pricing Adjustment</h4>
+                        <div class="adjustment-inputs">
+                            <input type="number" id="priceAdjustment" placeholder="Price Adjustment" step="0.01" value="0">
+                            <select id="adjustmentType">
+                                <option value="absolute">$ Per Yard</option>
+                                <option value="percentage">% Increase</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeCreateBucketModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="createBucket()">Create Bucket</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="bulkAssignModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Bulk Assign Remaining Customers</h3>
+                <span class="close" onclick="closeBulkAssignModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Assign all remaining uncategorized customers to a bucket:</p>
+                <select id="bulkAssignBucket">
+                    <option value="">Select a bucket...</option>
+                </select>
+                <div class="bulk-stats">
+                    <p><span id="unassignedCustomersCount">0</span> customers will be assigned</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeBulkAssignModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="performBulkAssign()">Assign All</button>
             </div>
         </div>
     </div>
@@ -541,6 +1227,1509 @@
         let historicalCostBreakdown = { manufacturing: 0, labor: 0, fixed: 0 };
         let profitGoal = 0;
         let projectedVolume = 0;
+
+        // Step 5: Customer Pricing Adjustments Variables
+        let customerAnalytics = [];
+        let customerBuckets = new Map();
+        let customerAssignments = new Map();
+        let overlapConflicts = [];
+        let step5Initialized = false;
+
+        /**
+         * @class CustomerAnalyticsEngine
+         * @description Processes historical data to generate customer metrics for Step 5
+         * @version 1.0.0
+         * @author Claude Code Implementation
+         */
+        class CustomerAnalyticsEngine {
+            constructor() {
+                this.customerData = new Map();
+                this.analytics = [];
+            }
+
+            /**
+             * Analyze customers from historical data
+             * @returns {Array<Object>} Customer analytics array
+             */
+            analyzeCustomers() {
+                if (!selectedMonths || selectedMonths.length === 0) {
+                    console.warn('No selected months for customer analysis');
+                    return [];
+                }
+
+                // Generate sample customer data from selected months
+                this.analytics = this.generateSampleCustomerData();
+                return this.analytics;
+            }
+
+            /**
+             * Generate sample customer data based on selected months
+             * @returns {Array<Object>} Sample customer analytics
+             */
+            generateSampleCustomerData() {
+                const customers = [
+                    { name: 'ABC Construction', baseVolume: 45, basePrice: 125, baseMargin: 22 },
+                    { name: 'XYZ Builders', baseVolume: 32, basePrice: 118, baseMargin: 28 },
+                    { name: 'Premier Concrete', baseVolume: 67, basePrice: 132, baseMargin: 19 },
+                    { name: 'Metro Development', baseVolume: 89, basePrice: 129, baseMargin: 25 },
+                    { name: 'Skyline Projects', baseVolume: 23, basePrice: 115, baseMargin: 31 },
+                    { name: 'Foundation Works', baseVolume: 56, basePrice: 127, baseMargin: 23 },
+                    { name: 'Urban Builders', baseVolume: 41, basePrice: 122, baseMargin: 26 },
+                    { name: 'Residential Plus', baseVolume: 38, basePrice: 120, baseMargin: 29 },
+                    { name: 'Commercial Core', baseVolume: 72, basePrice: 135, baseMargin: 21 },
+                    { name: 'Elite Construction', baseVolume: 95, basePrice: 140, baseMargin: 18 }
+                ];
+
+                return customers.map((customer, index) => {
+                    const customerId = `customer-${index + 1}`;
+                    const monthsFactor = selectedMonths.length / 12; // Scale based on selected months
+                    const totalVolume = customer.baseVolume * monthsFactor * selectedMonths.length;
+                    const averageUnitPrice = customer.basePrice + (Math.random() - 0.5) * 10; // +/- $5 variation
+                    const totalRevenue = totalVolume * averageUnitPrice;
+                    const profitMargin = customer.baseMargin + (Math.random() - 0.5) * 8; // +/- 4% variation
+                    const totalProfit = totalRevenue * (profitMargin / 100);
+                    const averageOrderSize = customer.baseVolume * 0.6; // Orders are 60% of base volume
+                    const deliveryCount = Math.ceil(totalVolume / averageOrderSize);
+                    
+                    return {
+                        customerId,
+                        customerName: customer.name,
+                        totalVolume: Math.round(totalVolume * 100) / 100,
+                        averageUnitPrice: Math.round(averageUnitPrice * 100) / 100,
+                        totalRevenue: Math.round(totalRevenue * 100) / 100,
+                        totalProfit: Math.round(totalProfit * 100) / 100,
+                        profitMargin: Math.round(profitMargin * 100) / 100,
+                        averageOrderSize: Math.round(averageOrderSize * 100) / 100,
+                        deliveryCount,
+                        lastOrderDate: selectedMonths.length > 0 ? selectedMonths[selectedMonths.length - 1] : 'Dec 2024',
+                        bucketId: null
+                    };
+                });
+            }
+
+            /**
+             * Calculate customer statistics
+             * @returns {Object} Summary statistics
+             */
+            calculateCustomerStats() {
+                if (this.analytics.length === 0) return null;
+
+                const totalCustomers = this.analytics.length;
+                const avgVolume = this.analytics.reduce((sum, c) => sum + c.totalVolume, 0) / totalCustomers;
+                const avgPrice = this.analytics.reduce((sum, c) => sum + c.averageUnitPrice, 0) / totalCustomers;
+                const avgMargin = this.analytics.reduce((sum, c) => sum + c.profitMargin, 0) / totalCustomers;
+
+                return {
+                    totalCustomers,
+                    avgVolume: Math.round(avgVolume * 100) / 100,
+                    avgPrice: Math.round(avgPrice * 100) / 100,
+                    avgMargin: Math.round(avgMargin * 100) / 100
+                };
+            }
+
+            /**
+             * Get customers that meet bucket criteria
+             * @param {Object} criteria Bucket criteria
+             * @returns {Array<Object>} Matching customers
+             */
+            getMatchingCustomers(criteria) {
+                return this.analytics.filter(customer => {
+                    const volumeMatch = this.checkRange(customer.totalVolume, criteria.volumeMin, criteria.volumeMax);
+                    const priceMatch = this.checkRange(customer.averageUnitPrice, criteria.priceMin, criteria.priceMax);
+                    const marginMatch = this.checkRange(customer.profitMargin, criteria.profitMarginMin, criteria.profitMarginMax);
+                    
+                    return volumeMatch && priceMatch && marginMatch;
+                });
+            }
+
+            /**
+             * Check if value is within range
+             * @param {number} value Value to check
+             * @param {number} min Minimum value (null = no limit)
+             * @param {number} max Maximum value (null = no limit)
+             * @returns {boolean} Whether value is in range
+             */
+            checkRange(value, min, max) {
+                if (min !== null && min !== undefined && min !== '' && value < min) return false;
+                if (max !== null && max !== undefined && max !== '' && value > max) return false;
+                return true;
+            }
+        }
+
+        /**
+         * @class OverlapResolutionEngine
+         * @description Handles conflicts when customers meet multiple bucket criteria
+         * @version 1.0.0
+         * @author Claude Code Implementation
+         */
+        class OverlapResolutionEngine {
+            constructor() {
+                this.conflicts = [];
+                this.resolutionHistory = new Map();
+            }
+
+            /**
+             * Detect customers eligible for multiple buckets
+             * @param {Array} customers Customer analytics array
+             * @param {Map} buckets Customer buckets map
+             * @returns {Array} Array of overlap conflicts
+             */
+            detectOverlaps(customers, buckets) {
+                this.conflicts = [];
+
+                customers.forEach(customer => {
+                    const eligibleBuckets = [];
+
+                    buckets.forEach((bucket, bucketId) => {
+                        const matches = this.customerMatchesCriteria(customer, bucket.criteria);
+                        if (matches) {
+                            const matchScore = this.calculateMatchScore(customer, bucket.criteria);
+                            eligibleBuckets.push({
+                                bucketId,
+                                bucketName: bucket.bucketName,
+                                matchScore
+                            });
+                        }
+                    });
+
+                    // If customer is eligible for multiple buckets, create conflict
+                    if (eligibleBuckets.length > 1) {
+                        // Sort by match score descending
+                        eligibleBuckets.sort((a, b) => b.matchScore - a.matchScore);
+                        
+                        this.conflicts.push({
+                            customerId: customer.customerId,
+                            customerName: customer.customerName,
+                            eligibleBuckets,
+                            recommendedBucket: eligibleBuckets[0].bucketId,
+                            conflictReason: `Customer meets criteria for ${eligibleBuckets.length} buckets`
+                        });
+                    }
+                });
+
+                return this.conflicts;
+            }
+
+            /**
+             * Check if customer matches bucket criteria
+             * @param {Object} customer Customer data
+             * @param {Object} criteria Bucket criteria
+             * @returns {boolean} Whether customer matches
+             */
+            customerMatchesCriteria(customer, criteria) {
+                const volumeMatch = this.checkCriteriaRange(customer.totalVolume, criteria.volumeMin, criteria.volumeMax);
+                const priceMatch = this.checkCriteriaRange(customer.averageUnitPrice, criteria.priceMin, criteria.priceMax);
+                const marginMatch = this.checkCriteriaRange(customer.profitMargin, criteria.profitMarginMin, criteria.profitMarginMax);
+                
+                return volumeMatch && priceMatch && marginMatch;
+            }
+
+            /**
+             * Check if value is within criteria range
+             * @param {number} value Value to check
+             * @param {number} min Minimum value
+             * @param {number} max Maximum value
+             * @returns {boolean} Whether value matches criteria
+             */
+            checkCriteriaRange(value, min, max) {
+                if (min !== null && min !== undefined && min !== '' && value < min) return false;
+                if (max !== null && max !== undefined && max !== '' && value > max) return false;
+                return true;
+            }
+
+            /**
+             * Calculate how well customer matches bucket criteria
+             * @param {Object} customer Customer data
+             * @param {Object} criteria Bucket criteria
+             * @returns {number} Match score (0-1)
+             */
+            calculateMatchScore(customer, criteria) {
+                let score = 0;
+                let factors = 0;
+
+                // Volume score
+                if (criteria.volumeMin !== null || criteria.volumeMax !== null) {
+                    factors++;
+                    const volumeScore = this.calculateRangeScore(customer.totalVolume, criteria.volumeMin, criteria.volumeMax);
+                    score += volumeScore;
+                }
+
+                // Price score
+                if (criteria.priceMin !== null || criteria.priceMax !== null) {
+                    factors++;
+                    const priceScore = this.calculateRangeScore(customer.averageUnitPrice, criteria.priceMin, criteria.priceMax);
+                    score += priceScore;
+                }
+
+                // Margin score
+                if (criteria.profitMarginMin !== null || criteria.profitMarginMax !== null) {
+                    factors++;
+                    const marginScore = this.calculateRangeScore(customer.profitMargin, criteria.profitMarginMin, criteria.profitMarginMax);
+                    score += marginScore;
+                }
+
+                return factors > 0 ? score / factors : 0;
+            }
+
+            /**
+             * Calculate score for how well value fits in range
+             * @param {number} value Actual value
+             * @param {number} min Range minimum
+             * @param {number} max Range maximum
+             * @returns {number} Score (0-1)
+             */
+            calculateRangeScore(value, min, max) {
+                // If no constraints, return perfect score
+                if ((min === null || min === undefined || min === '') && 
+                    (max === null || max === undefined || max === '')) {
+                    return 1.0;
+                }
+
+                // If only minimum constraint
+                if (max === null || max === undefined || max === '') {
+                    return value >= min ? 1.0 : 0.0;
+                }
+
+                // If only maximum constraint
+                if (min === null || min === undefined || min === '') {
+                    return value <= max ? 1.0 : 0.0;
+                }
+
+                // If both constraints, score based on position in range
+                if (value < min || value > max) return 0.0;
+                
+                const range = max - min;
+                const position = value - min;
+                
+                // Score higher for being in the middle of the range
+                const normalizedPosition = position / range;
+                return 1.0 - Math.abs(0.5 - normalizedPosition) * 2;
+            }
+
+            /**
+             * Get conflicts that need resolution
+             * @returns {Array} Current conflicts array
+             */
+            getConflicts() {
+                return this.conflicts;
+            }
+
+            /**
+             * Resolve conflict by assigning customer to specific bucket
+             * @param {string} customerId Customer ID
+             * @param {string} selectedBucketId Chosen bucket ID
+             */
+            resolveConflict(customerId, selectedBucketId) {
+                // Remove conflict
+                this.conflicts = this.conflicts.filter(conflict => conflict.customerId !== customerId);
+                
+                // Record resolution decision
+                this.resolutionHistory.set(customerId, {
+                    selectedBucketId,
+                    resolvedAt: new Date().toISOString(),
+                    strategy: 'manual'
+                });
+            }
+
+            /**
+             * Auto-resolve conflicts using business rules
+             * @param {string} strategy Resolution strategy ('highest_score', 'volume_priority', 'margin_priority')
+             */
+            autoResolveByPriority(strategy = 'highest_score') {
+                this.conflicts.forEach(conflict => {
+                    let selectedBucketId;
+
+                    switch (strategy) {
+                        case 'highest_score':
+                            selectedBucketId = conflict.eligibleBuckets[0].bucketId; // Already sorted by score
+                            break;
+                        case 'volume_priority':
+                            // Prefer buckets with volume constraints
+                            selectedBucketId = conflict.recommendedBucket; // Default to recommended
+                            break;
+                        case 'margin_priority':
+                            // Prefer buckets with margin constraints
+                            selectedBucketId = conflict.recommendedBucket; // Default to recommended
+                            break;
+                        default:
+                            selectedBucketId = conflict.recommendedBucket;
+                    }
+
+                    this.resolveConflict(conflict.customerId, selectedBucketId);
+                });
+            }
+        }
+
+        /**
+         * @class PricingAdjustmentCalculator
+         * @description Handles revenue impact analysis and pricing recommendations for Step 5
+         * @version 1.0.0
+         * @author Claude Code Implementation
+         */
+        class PricingAdjustmentCalculator {
+            constructor() {
+                /** @type {number} Price elasticity coefficient for demand impact estimation */
+                this.priceElasticity = -0.3;
+                
+                /** @type {Object} Business constraints for pricing adjustments */
+                this.constraints = {
+                    maxPriceIncrease: 1.0,      // 100% increase maximum
+                    minPriceDecrease: -0.5,     // 50% decrease maximum
+                    maxAbsoluteAdjustment: 100, // $100 maximum absolute adjustment
+                    marketCeilingPrice: 200,    // $200/yard competitive ceiling
+                    minimumMargin: 0.05,        // 5% minimum profit margin
+                    maxChurnRate: 0.15          // 15% maximum acceptable customer churn
+                };
+                
+                /** @type {Object} Strategy weights for different approaches */
+                this.strategyWeights = {
+                    proportional: { risk: 0.2, impact: 0.6, feasibility: 0.8 },
+                    volumeBased: { risk: 0.4, impact: 0.8, feasibility: 0.7 },
+                    marginBased: { risk: 0.3, impact: 0.7, feasibility: 0.9 },
+                    riskMinimized: { risk: 0.1, impact: 0.4, feasibility: 1.0 }
+                };
+                
+                /** @type {Array} Cache for calculation results */
+                this.calculationCache = new Map();
+                
+                this.initializeAnalytics();
+            }
+
+            /**
+             * Initialize analytics tracking
+             * @private
+             */
+            initializeAnalytics() {
+                /** @type {Object} Performance metrics tracking */
+                this.metrics = {
+                    calculationsPerformed: 0,
+                    totalRevenueAnalyzed: 0,
+                    strategiesGenerated: 0,
+                    averageCalculationTime: 0
+                };
+            }
+
+            /**
+             * Calculate comprehensive adjustment impact across all buckets
+             * @param {Map<string, Object>} buckets - Customer buckets from CustomerBucketManager
+             * @param {Object} adjustments - Price adjustments per bucket {bucketId: {adjustment, type}}
+             * @param {Object} options - Calculation options
+             * @returns {Object} Complete impact analysis
+             */
+            calculateAdjustmentImpact(buckets, adjustments = {}, options = {}) {
+                const startTime = performance.now();
+                
+                try {
+                    const {
+                        includeElasticity = true,
+                        scenarioType = 'realistic',
+                        includeChurnImpact = true
+                    } = options;
+
+                    let totalCurrentRevenue = 0;
+                    let totalProjectedRevenue = 0;
+                    let totalCurrentProfit = 0;
+                    let totalProjectedProfit = 0;
+                    let totalVolumeImpact = 0;
+                    let averageChurnRisk = 0;
+                    const bucketImpacts = new Map();
+
+                    // Calculate impact for each bucket
+                    for (const [bucketId, bucket] of buckets) {
+                        const bucketAdjustment = adjustments[bucketId] || { adjustment: 0, adjustmentType: 'absolute' };
+                        
+                        const impact = this.calculateBucketImpact(bucket, bucketAdjustment, {
+                            includeElasticity,
+                            scenarioType,
+                            includeChurnImpact
+                        });
+
+                        bucketImpacts.set(bucketId, impact);
+                        
+                        totalCurrentRevenue += impact.currentRevenue;
+                        totalProjectedRevenue += impact.projectedRevenue;
+                        totalCurrentProfit += impact.currentProfit;
+                        totalProjectedProfit += impact.projectedProfit;
+                        totalVolumeImpact += impact.volumeChange;
+                        averageChurnRisk += impact.churnRisk * bucket.customerCount;
+                    }
+
+                    // Calculate weighted average churn risk
+                    const totalCustomers = Array.from(buckets.values())
+                        .reduce((sum, bucket) => sum + bucket.customerCount, 0);
+                    averageChurnRisk = totalCustomers > 0 ? averageChurnRisk / totalCustomers : 0;
+
+                    // Calculate aggregate metrics
+                    const revenueChange = totalProjectedRevenue - totalCurrentRevenue;
+                    const profitChange = totalProjectedProfit - totalCurrentProfit;
+                    const revenueChangePercent = totalCurrentRevenue > 0 
+                        ? (revenueChange / totalCurrentRevenue) * 100 
+                        : 0;
+                    const profitChangePercent = totalCurrentProfit > 0 
+                        ? (profitChange / totalCurrentProfit) * 100 
+                        : 0;
+
+                    const result = {
+                        summary: {
+                            totalCurrentRevenue,
+                            totalProjectedRevenue,
+                            totalCurrentProfit,
+                            totalProjectedProfit,
+                            revenueChange,
+                            profitChange,
+                            revenueChangePercent,
+                            profitChangePercent,
+                            volumeImpact: totalVolumeImpact,
+                            averageChurnRisk: Math.round(averageChurnRisk * 1000) / 1000
+                        },
+                        bucketImpacts,
+                        riskAssessment: this.assessOverallRisk(bucketImpacts, averageChurnRisk),
+                        recommendations: this.generateImpactRecommendations(bucketImpacts),
+                        calculatedAt: new Date().toISOString(),
+                        calculationTime: performance.now() - startTime
+                    };
+
+                    // Update metrics
+                    this.metrics.calculationsPerformed++;
+                    this.metrics.totalRevenueAnalyzed += totalCurrentRevenue;
+                    this.updateAverageCalculationTime(performance.now() - startTime);
+
+                    return result;
+
+                } catch (error) {
+                    throw new Error(`Adjustment impact calculation failed: ${error.message}`);
+                }
+            }
+
+            /**
+             * Calculate revenue and profit impact for individual bucket
+             * @param {Object} bucket - Customer bucket data
+             * @param {Object} adjustment - Price adjustment {adjustment, adjustmentType}
+             * @param {Object} options - Calculation options
+             * @returns {Object} Detailed bucket impact analysis
+             */
+            calculateBucketImpact(bucket, adjustment, options = {}) {
+                const {
+                    includeElasticity = true,
+                    scenarioType = 'realistic',
+                    includeChurnImpact = true
+                } = options;
+
+                // Validate inputs
+                if (!bucket || typeof bucket !== 'object') {
+                    throw new Error('Invalid bucket data provided');
+                }
+                
+                if (!adjustment || typeof adjustment.adjustment !== 'number') {
+                    throw new Error('Invalid adjustment data provided');
+                }
+
+                // Calculate current metrics
+                const currentPrice = bucket.averagePrice || 0;
+                const currentVolume = bucket.totalVolume || 0;
+                const currentRevenue = currentPrice * currentVolume;
+                const currentMargin = bucket.averageMargin || 0;
+                const currentProfit = currentRevenue * (currentMargin / 100);
+
+                // Calculate new price after adjustment
+                let newPrice;
+                if (adjustment.adjustmentType === 'percentage') {
+                    newPrice = currentPrice * (1 + (adjustment.adjustment / 100));
+                } else {
+                    newPrice = currentPrice + adjustment.adjustment;
+                }
+
+                // Ensure new price meets constraints
+                newPrice = Math.max(0.01, newPrice); // Minimum price
+                
+                // Calculate price change percentage
+                const priceChangePercent = currentPrice > 0 
+                    ? ((newPrice - currentPrice) / currentPrice) * 100 
+                    : 0;
+
+                // Calculate volume impact using price elasticity
+                let volumeMultiplier = 1;
+                let churnRisk = 0;
+                
+                if (includeElasticity && Math.abs(priceChangePercent) > 0.1) {
+                    // Apply elasticity coefficient (negative = decrease in demand with price increase)
+                    const elasticityFactor = this.priceElasticity * (priceChangePercent / 100);
+                    volumeMultiplier = 1 + elasticityFactor;
+                    
+                    // Apply scenario adjustments
+                    switch (scenarioType) {
+                        case 'optimistic':
+                            volumeMultiplier = Math.max(volumeMultiplier, 0.9); // Limit downside
+                            break;
+                        case 'pessimistic':
+                            volumeMultiplier = Math.min(volumeMultiplier, 1.1); // Limit upside
+                            break;
+                        case 'realistic':
+                        default:
+                            // Use calculated elasticity as-is
+                            break;
+                    }
+
+                    // Calculate churn risk based on price increase magnitude
+                    if (priceChangePercent > 0) {
+                        churnRisk = Math.min(priceChangePercent / 100 * 0.4, 0.25); // Max 25% churn risk
+                    }
+                }
+
+                // Ensure volume multiplier stays within reasonable bounds
+                volumeMultiplier = Math.max(0.5, Math.min(1.5, volumeMultiplier));
+
+                // Calculate projected metrics
+                const projectedVolume = currentVolume * volumeMultiplier;
+                const projectedRevenue = newPrice * projectedVolume;
+                
+                // Calculate new profit assuming same cost base
+                const projectedMargin = currentMargin; // Assume margin % stays same on cost basis
+                const projectedProfit = projectedRevenue * (projectedMargin / 100);
+
+                // Calculate changes
+                const revenueChange = projectedRevenue - currentRevenue;
+                const profitChange = projectedProfit - currentProfit;
+                const volumeChange = projectedVolume - currentVolume;
+
+                // Assess risk factors
+                const riskFactors = this.assessBucketRisk(bucket, adjustment, newPrice, churnRisk);
+
+                return {
+                    bucketId: bucket.bucketId,
+                    bucketName: bucket.bucketName,
+                    customerCount: bucket.customerCount,
+                    
+                    // Current state
+                    currentPrice: Math.round(currentPrice * 100) / 100,
+                    currentVolume: Math.round(currentVolume * 10) / 10,
+                    currentRevenue: Math.round(currentRevenue * 100) / 100,
+                    currentProfit: Math.round(currentProfit * 100) / 100,
+                    currentMargin,
+                    
+                    // Projected state
+                    newPrice: Math.round(newPrice * 100) / 100,
+                    projectedVolume: Math.round(projectedVolume * 10) / 10,
+                    projectedRevenue: Math.round(projectedRevenue * 100) / 100,
+                    projectedProfit: Math.round(projectedProfit * 100) / 100,
+                    projectedMargin,
+                    
+                    // Changes
+                    priceChange: Math.round((newPrice - currentPrice) * 100) / 100,
+                    priceChangePercent: Math.round(priceChangePercent * 100) / 100,
+                    revenueChange: Math.round(revenueChange * 100) / 100,
+                    profitChange: Math.round(profitChange * 100) / 100,
+                    volumeChange: Math.round(volumeChange * 10) / 10,
+                    volumeChangePercent: currentVolume > 0 
+                        ? Math.round(((projectedVolume - currentVolume) / currentVolume) * 10000) / 100
+                        : 0,
+                    
+                    // Risk assessment
+                    churnRisk: Math.round(churnRisk * 1000) / 1000,
+                    riskFactors,
+                    riskLevel: this.calculateRiskLevel(riskFactors),
+                    
+                    // Metadata
+                    elasticityApplied: includeElasticity,
+                    scenarioType,
+                    adjustmentType: adjustment.adjustmentType,
+                    originalAdjustment: adjustment.adjustment
+                };
+            }
+
+            /**
+             * Calculate progress toward profit goal achievement
+             * @param {number} currentProfit - Current projected profit before adjustments
+             * @param {number} projectedProfit - Projected profit after adjustments
+             * @param {number} goalProfit - Target profit goal
+             * @returns {Object} Goal achievement analysis
+             */
+            calculateGoalAchievement(currentProfit, projectedProfit, goalProfit) {
+                if (typeof currentProfit !== 'number' || typeof projectedProfit !== 'number' || typeof goalProfit !== 'number') {
+                    throw new Error('All profit values must be numbers');
+                }
+
+                const currentGap = goalProfit - currentProfit;
+                const projectedGap = goalProfit - projectedProfit;
+                const gapReduction = currentGap - projectedGap;
+                
+                const currentAchievement = goalProfit > 0 ? (currentProfit / goalProfit) * 100 : 0;
+                const projectedAchievement = goalProfit > 0 ? (projectedProfit / goalProfit) * 100 : 0;
+                const achievementImprovement = projectedAchievement - currentAchievement;
+
+                // Calculate confidence level based on gap size and realism
+                let confidenceLevel = 'high';
+                if (Math.abs(projectedGap) > goalProfit * 0.1) {
+                    confidenceLevel = projectedGap > 0 ? 'medium' : 'low';
+                }
+
+                // Determine status and recommendations
+                let status, recommendation;
+                if (projectedProfit >= goalProfit) {
+                    status = 'goal_achieved';
+                    recommendation = 'Goal achieved! Consider optimizing for customer retention.';
+                } else if (gapReduction > currentGap * 0.5) {
+                    status = 'significant_progress';
+                    recommendation = 'Significant progress toward goal. Consider additional strategies.';
+                } else if (gapReduction > currentGap * 0.2) {
+                    status = 'moderate_progress';
+                    recommendation = 'Moderate progress. Explore additional revenue opportunities.';
+                } else {
+                    status = 'minimal_progress';
+                    recommendation = 'Minimal impact. Consider alternative strategies or adjust goal.';
+                }
+
+                return {
+                    goalProfit: Math.round(goalProfit * 100) / 100,
+                    currentProfit: Math.round(currentProfit * 100) / 100,
+                    projectedProfit: Math.round(projectedProfit * 100) / 100,
+                    
+                    currentGap: Math.round(currentGap * 100) / 100,
+                    projectedGap: Math.round(projectedGap * 100) / 100,
+                    gapReduction: Math.round(gapReduction * 100) / 100,
+                    gapReductionPercent: currentGap !== 0 ? Math.round((gapReduction / Math.abs(currentGap)) * 10000) / 100 : 0,
+                    
+                    currentAchievement: Math.round(currentAchievement * 100) / 100,
+                    projectedAchievement: Math.round(projectedAchievement * 100) / 100,
+                    achievementImprovement: Math.round(achievementImprovement * 100) / 100,
+                    
+                    status,
+                    confidenceLevel,
+                    recommendation,
+                    
+                    isGoalAchieved: projectedProfit >= goalProfit,
+                    additionalRevenueNeeded: Math.max(0, projectedGap),
+                    
+                    calculatedAt: new Date().toISOString()
+                };
+            }
+
+            /**
+             * Generate comprehensive pricing recommendations
+             * @param {number} profitGap - Gap between goal and projected profit
+             * @param {Map<string, Object>} buckets - Customer buckets
+             * @param {Object} options - Strategy options
+             * @returns {Object} Pricing strategy recommendations
+             */
+            generatePricingRecommendations(profitGap, buckets, options = {}) {
+                const {
+                    maxRiskLevel = 'medium',
+                    preferredStrategy = 'auto',
+                    includeAlternatives = true
+                } = options;
+
+                if (!buckets || buckets.size === 0) {
+                    throw new Error('No customer buckets provided for recommendations');
+                }
+
+                // Calculate total current revenue and volume for baseline
+                const totalRevenue = Array.from(buckets.values())
+                    .reduce((sum, bucket) => sum + (bucket.averagePrice * bucket.totalVolume), 0);
+                const totalVolume = Array.from(buckets.values())
+                    .reduce((sum, bucket) => sum + bucket.totalVolume, 0);
+
+                const strategies = [];
+
+                // Generate different strategies
+                if (profitGap > 0) {
+                    // Need to increase profit
+                    strategies.push(
+                        this.calculateProportionalIncrease(profitGap, totalRevenue, buckets),
+                        this.calculateVolumeBasedStrategy(profitGap, buckets),
+                        this.calculateMarginBasedStrategy(profitGap, buckets),
+                        this.calculateRiskMinimizedStrategy(profitGap, buckets)
+                    );
+                } else if (profitGap < 0) {
+                    // Profit exceeds goal - could optimize for retention or market share
+                    strategies.push(this.generateOptimizationStrategies(Math.abs(profitGap), buckets));
+                }
+
+                // Filter strategies by risk level
+                const acceptableStrategies = strategies.filter(strategy => 
+                    this.compareRiskLevels(strategy.riskLevel, maxRiskLevel) <= 0
+                );
+
+                // Select primary recommendation
+                let primaryStrategy;
+                if (preferredStrategy === 'auto') {
+                    primaryStrategy = this.selectOptimalStrategy(acceptableStrategies);
+                } else {
+                    primaryStrategy = acceptableStrategies.find(s => s.strategyType === preferredStrategy) 
+                        || acceptableStrategies[0];
+                }
+
+                const result = {
+                    profitGap: Math.round(profitGap * 100) / 100,
+                    totalRevenue,
+                    totalVolume,
+                    
+                    primaryRecommendation: primaryStrategy,
+                    alternativeStrategies: includeAlternatives ? acceptableStrategies.filter(s => s !== primaryStrategy) : [],
+                    
+                    implementationNotes: this.generateImplementationNotes(primaryStrategy),
+                    riskWarnings: this.generateRiskWarnings(primaryStrategy),
+                    
+                    generatedAt: new Date().toISOString()
+                };
+
+                this.metrics.strategiesGenerated++;
+                return result;
+            }
+
+            /**
+             * Calculate proportional price increase across all buckets
+             * @param {number} profitGap - Required additional profit
+             * @param {number} totalRevenue - Current total revenue
+             * @param {Map<string, Object>} buckets - Customer buckets
+             * @returns {Object} Proportional increase strategy
+             */
+            calculateProportionalIncrease(profitGap, totalRevenue, buckets) {
+                // Calculate required revenue increase (assuming same margin %)
+                const avgMargin = this.calculateWeightedAverageMargin(buckets);
+                const requiredRevenueIncrease = profitGap / (avgMargin / 100);
+                
+                // Calculate proportional increase percentage
+                const proportionalIncrease = totalRevenue > 0 
+                    ? (requiredRevenueIncrease / totalRevenue) * 100 
+                    : 0;
+
+                const adjustments = new Map();
+                const bucketImpacts = new Map();
+                let totalRisk = 0;
+                let feasible = true;
+
+                // Apply same percentage increase to all buckets
+                for (const [bucketId, bucket] of buckets) {
+                    const adjustment = {
+                        adjustment: proportionalIncrease,
+                        adjustmentType: 'percentage'
+                    };
+                    
+                    // Validate against constraints
+                    if (proportionalIncrease > this.constraints.maxPriceIncrease * 100) {
+                        feasible = false;
+                    }
+
+                    const impact = this.calculateBucketImpact(bucket, adjustment);
+                    
+                    adjustments.set(bucketId, adjustment);
+                    bucketImpacts.set(bucketId, impact);
+                    totalRisk += impact.churnRisk * bucket.customerCount;
+                }
+
+                const avgRisk = Array.from(buckets.values())
+                    .reduce((sum, bucket) => sum + bucket.customerCount, 0) > 0
+                    ? totalRisk / Array.from(buckets.values()).reduce((sum, bucket) => sum + bucket.customerCount, 0)
+                    : 0;
+
+                return {
+                    strategyType: 'proportional',
+                    name: 'Proportional Price Increase',
+                    description: `Apply ${proportionalIncrease.toFixed(1)}% price increase across all customer segments equally`,
+                    
+                    adjustments,
+                    bucketImpacts,
+                    
+                    expectedProfitIncrease: profitGap,
+                    requiredPriceIncrease: proportionalIncrease,
+                    
+                    riskLevel: this.categorizeRisk(avgRisk),
+                    averageChurnRisk: Math.round(avgRisk * 1000) / 1000,
+                    feasible,
+                    
+                    pros: [
+                        'Fair and consistent across all customers',
+                        'Simple to implement and communicate',
+                        'Maintains relative pricing relationships'
+                    ],
+                    cons: [
+                        'May not optimize for customer value differences',
+                        'One-size-fits-all approach may miss opportunities',
+                        feasible ? null : 'Required increase exceeds maximum constraints'
+                    ].filter(Boolean),
+                    
+                    implementationComplexity: 'low',
+                    timeToImplement: '1-2 weeks',
+                    
+                    calculatedAt: new Date().toISOString()
+                };
+            }
+
+            /**
+             * Calculate volume-based pricing strategy targeting high-volume customers
+             * @param {number} profitGap - Required additional profit
+             * @param {Map<string, Object>} buckets - Customer buckets
+             * @returns {Object} Volume-based strategy
+             */
+            calculateVolumeBasedStrategy(profitGap, buckets) {
+                // Sort buckets by volume (descending)
+                const sortedBuckets = Array.from(buckets.entries())
+                    .sort(([,a], [,b]) => b.totalVolume - a.totalVolume);
+
+                const adjustments = new Map();
+                const bucketImpacts = new Map();
+                let remainingGap = profitGap;
+                let totalRisk = 0;
+                let customerCount = 0;
+
+                // Apply higher increases to higher volume buckets first
+                for (const [bucketId, bucket] of sortedBuckets) {
+                    if (remainingGap <= 0) break;
+                    
+                    // Calculate volume-based increase (higher volume = higher increase)
+                    const volumeRank = bucket.totalVolume / sortedBuckets[0][1].totalVolume;
+                    const baseIncrease = Math.min(15, (remainingGap / (bucket.averagePrice * bucket.totalVolume)) * 100);
+                    const volumeWeightedIncrease = baseIncrease * (0.5 + 0.5 * volumeRank);
+                    
+                    const adjustment = {
+                        adjustment: Math.min(volumeWeightedIncrease, this.constraints.maxPriceIncrease * 100),
+                        adjustmentType: 'percentage'
+                    };
+                    
+                    const impact = this.calculateBucketImpact(bucket, adjustment);
+                    
+                    adjustments.set(bucketId, adjustment);
+                    bucketImpacts.set(bucketId, impact);
+                    
+                    remainingGap -= impact.profitChange;
+                    totalRisk += impact.churnRisk * bucket.customerCount;
+                    customerCount += bucket.customerCount;
+                }
+
+                const avgRisk = customerCount > 0 ? totalRisk / customerCount : 0;
+                const gapClosed = profitGap - Math.max(0, remainingGap);
+
+                return {
+                    strategyType: 'volumeBased',
+                    name: 'Volume-Based Price Optimization',
+                    description: 'Apply higher price increases to high-volume customers for maximum revenue impact',
+                    
+                    adjustments,
+                    bucketImpacts,
+                    
+                    expectedProfitIncrease: gapClosed,
+                    remainingGap: Math.max(0, remainingGap),
+                    gapClosurePercent: profitGap > 0 ? (gapClosed / profitGap) * 100 : 100,
+                    
+                    riskLevel: this.categorizeRisk(avgRisk),
+                    averageChurnRisk: Math.round(avgRisk * 1000) / 1000,
+                    feasible: remainingGap <= profitGap * 0.1,
+                    
+                    pros: [
+                        'Maximum revenue impact per customer',
+                        'Focuses on most valuable relationships',
+                        'Leverages customer dependency on volume'
+                    ],
+                    cons: [
+                        'Higher risk of losing major customers',
+                        'May damage long-term relationships',
+                        'Requires careful customer communication'
+                    ],
+                    
+                    implementationComplexity: 'medium',
+                    timeToImplement: '2-4 weeks',
+                    
+                    calculatedAt: new Date().toISOString()
+                };
+            }
+
+            /**
+             * Calculate margin-based pricing strategy focusing on high-margin opportunities
+             * @param {number} profitGap - Required additional profit
+             * @param {Map<string, Object>} buckets - Customer buckets
+             * @returns {Object} Margin-based strategy
+             */
+            calculateMarginBasedStrategy(profitGap, buckets) {
+                // Sort buckets by profit margin (descending)
+                const sortedBuckets = Array.from(buckets.entries())
+                    .sort(([,a], [,b]) => b.averageMargin - a.averageMargin);
+
+                const adjustments = new Map();
+                const bucketImpacts = new Map();
+                let remainingGap = profitGap;
+                let totalRisk = 0;
+                let customerCount = 0;
+
+                // Apply increases prioritizing higher-margin buckets
+                for (const [bucketId, bucket] of sortedBuckets) {
+                    if (remainingGap <= 0) break;
+                    
+                    // Calculate margin-based increase potential
+                    const marginRank = bucket.averageMargin / (sortedBuckets[0][1].averageMargin || 1);
+                    const currentRevenue = bucket.averagePrice * bucket.totalVolume;
+                    const maxPotentialIncrease = Math.min(20, (remainingGap / currentRevenue) * 100);
+                    const marginWeightedIncrease = maxPotentialIncrease * marginRank;
+                    
+                    const adjustment = {
+                        adjustment: Math.min(marginWeightedIncrease, this.constraints.maxPriceIncrease * 100),
+                        adjustmentType: 'percentage'
+                    };
+                    
+                    const impact = this.calculateBucketImpact(bucket, adjustment);
+                    
+                    adjustments.set(bucketId, adjustment);
+                    bucketImpacts.set(bucketId, impact);
+                    
+                    remainingGap -= impact.profitChange;
+                    totalRisk += impact.churnRisk * bucket.customerCount;
+                    customerCount += bucket.customerCount;
+                }
+
+                const avgRisk = customerCount > 0 ? totalRisk / customerCount : 0;
+                const gapClosed = profitGap - Math.max(0, remainingGap);
+
+                return {
+                    strategyType: 'marginBased',
+                    name: 'Margin Optimization Strategy',
+                    description: 'Focus price increases on highest-margin customer segments',
+                    
+                    adjustments,
+                    bucketImpacts,
+                    
+                    expectedProfitIncrease: gapClosed,
+                    remainingGap: Math.max(0, remainingGap),
+                    gapClosurePercent: profitGap > 0 ? (gapClosed / profitGap) * 100 : 100,
+                    
+                    riskLevel: this.categorizeRisk(avgRisk),
+                    averageChurnRisk: Math.round(avgRisk * 1000) / 1000,
+                    feasible: remainingGap <= profitGap * 0.15,
+                    
+                    pros: [
+                        'Builds on existing profitable relationships',
+                        'Lower risk of customer loss',
+                        'Optimizes margin efficiency'
+                    ],
+                    cons: [
+                        'May not generate maximum revenue',
+                        'Limited by existing margin distribution',
+                        'Could miss volume opportunities'
+                    ],
+                    
+                    implementationComplexity: 'low',
+                    timeToImplement: '1-3 weeks',
+                    
+                    calculatedAt: new Date().toISOString()
+                };
+            }
+
+            /**
+             * Calculate risk-minimized pricing strategy with conservative adjustments
+             * @param {number} profitGap - Required additional profit
+             * @param {Map<string, Object>} buckets - Customer buckets
+             * @returns {Object} Risk-minimized strategy
+             */
+            calculateRiskMinimizedStrategy(profitGap, buckets) {
+                const adjustments = new Map();
+                const bucketImpacts = new Map();
+                let totalRisk = 0;
+                let totalProfitIncrease = 0;
+                let customerCount = 0;
+
+                // Apply conservative increases to all buckets
+                const conservativeIncreasePercent = 3; // 3% increase maximum per bucket
+                
+                for (const [bucketId, bucket] of buckets) {
+                    // Even more conservative for high-churn risk segments
+                    let bucketIncrease = conservativeIncreasePercent;
+                    
+                    // Reduce increase for price-sensitive segments (high volume, low margin)
+                    if (bucket.averageMargin < 15 && bucket.totalVolume > 100) {
+                        bucketIncrease = Math.max(1, bucketIncrease / 2);
+                    }
+                    
+                    const adjustment = {
+                        adjustment: bucketIncrease,
+                        adjustmentType: 'percentage'
+                    };
+                    
+                    const impact = this.calculateBucketImpact(bucket, adjustment, {
+                        scenarioType: 'pessimistic' // Use pessimistic scenario for conservative estimate
+                    });
+                    
+                    adjustments.set(bucketId, adjustment);
+                    bucketImpacts.set(bucketId, impact);
+                    
+                    totalProfitIncrease += impact.profitChange;
+                    totalRisk += impact.churnRisk * bucket.customerCount;
+                    customerCount += bucket.customerCount;
+                }
+
+                const avgRisk = customerCount > 0 ? totalRisk / customerCount : 0;
+                const gapClosed = Math.min(totalProfitIncrease, profitGap);
+                const remainingGap = Math.max(0, profitGap - totalProfitIncrease);
+
+                return {
+                    strategyType: 'riskMinimized',
+                    name: 'Conservative Growth Strategy',
+                    description: 'Minimize customer churn risk with small, sustainable price increases',
+                    
+                    adjustments,
+                    bucketImpacts,
+                    
+                    expectedProfitIncrease: gapClosed,
+                    remainingGap,
+                    gapClosurePercent: profitGap > 0 ? (gapClosed / profitGap) * 100 : 100,
+                    
+                    riskLevel: 'low',
+                    averageChurnRisk: Math.round(avgRisk * 1000) / 1000,
+                    feasible: true,
+                    
+                    pros: [
+                        'Minimal customer churn risk',
+                        'Sustainable long-term approach',
+                        'Easy to implement and explain',
+                        'Preserves customer relationships'
+                    ],
+                    cons: [
+                        'Limited profit impact',
+                        'May not close large profit gaps',
+                        'Slower path to goal achievement'
+                    ],
+                    
+                    implementationComplexity: 'very_low',
+                    timeToImplement: '1-2 weeks',
+                    multiPhaseRecommendation: remainingGap > profitGap * 0.5,
+                    
+                    calculatedAt: new Date().toISOString()
+                };
+            }
+
+            /**
+             * Validate pricing constraints and business rules
+             * @param {Map<string, Object>} adjustments - Proposed pricing adjustments
+             * @param {Map<string, Object>} buckets - Customer buckets
+             * @returns {Object} Validation results with warnings and errors
+             */
+            validatePricingConstraints(adjustments, buckets) {
+                const warnings = [];
+                const errors = [];
+                const bucketValidation = new Map();
+
+                for (const [bucketId, adjustment] of adjustments) {
+                    const bucket = buckets.get(bucketId);
+                    if (!bucket) {
+                        errors.push(`Bucket not found: ${bucketId}`);
+                        continue;
+                    }
+
+                    const validation = {
+                        bucketId,
+                        bucketName: bucket.bucketName,
+                        isValid: true,
+                        warnings: [],
+                        errors: []
+                    };
+
+                    // Validate adjustment magnitude
+                    if (adjustment.adjustmentType === 'percentage') {
+                        if (adjustment.adjustment > this.constraints.maxPriceIncrease * 100) {
+                            validation.errors.push(`Price increase ${adjustment.adjustment.toFixed(1)}% exceeds maximum ${(this.constraints.maxPriceIncrease * 100).toFixed(1)}%`);
+                            validation.isValid = false;
+                        }
+                        if (adjustment.adjustment < this.constraints.minPriceDecrease * 100) {
+                            validation.errors.push(`Price decrease ${adjustment.adjustment.toFixed(1)}% exceeds minimum ${(this.constraints.minPriceDecrease * 100).toFixed(1)}%`);
+                            validation.isValid = false;
+                        }
+                    } else {
+                        if (Math.abs(adjustment.adjustment) > this.constraints.maxAbsoluteAdjustment) {
+                            validation.errors.push(`Absolute adjustment $${adjustment.adjustment.toFixed(2)} exceeds maximum $${this.constraints.maxAbsoluteAdjustment}`);
+                            validation.isValid = false;
+                        }
+                    }
+
+                    // Calculate new price and validate
+                    const currentPrice = bucket.averagePrice || 0;
+                    let newPrice;
+                    if (adjustment.adjustmentType === 'percentage') {
+                        newPrice = currentPrice * (1 + (adjustment.adjustment / 100));
+                    } else {
+                        newPrice = currentPrice + adjustment.adjustment;
+                    }
+
+                    // Market ceiling warning
+                    if (newPrice > this.constraints.marketCeilingPrice) {
+                        validation.warnings.push(`New price $${newPrice.toFixed(2)}/yard may exceed market competitive ceiling of $${this.constraints.marketCeilingPrice}/yard`);
+                    }
+
+                    // Minimum price check
+                    if (newPrice < 1) {
+                        validation.errors.push(`New price $${newPrice.toFixed(2)}/yard is below minimum viable price`);
+                        validation.isValid = false;
+                    }
+
+                    // Calculate potential impact for additional warnings
+                    const impact = this.calculateBucketImpact(bucket, adjustment, { scenarioType: 'pessimistic' });
+                    
+                    // High churn risk warning
+                    if (impact.churnRisk > this.constraints.maxChurnRate) {
+                        validation.warnings.push(`High churn risk ${(impact.churnRisk * 100).toFixed(1)}% for ${bucket.customerCount} customers`);
+                    }
+
+                    // Large volume impact warning
+                    if (Math.abs(impact.volumeChangePercent) > 20) {
+                        validation.warnings.push(`Significant volume impact: ${impact.volumeChangePercent.toFixed(1)}% change expected`);
+                    }
+
+                    bucketValidation.set(bucketId, validation);
+                    
+                    // Aggregate warnings and errors
+                    warnings.push(...validation.warnings.map(w => `${bucket.bucketName}: ${w}`));
+                    errors.push(...validation.errors.map(e => `${bucket.bucketName}: ${e}`));
+                }
+
+                const isValid = errors.length === 0;
+                const riskLevel = errors.length > 0 ? 'high' : warnings.length > 0 ? 'medium' : 'low';
+
+                return {
+                    isValid,
+                    riskLevel,
+                    totalWarnings: warnings.length,
+                    totalErrors: errors.length,
+                    
+                    warnings,
+                    errors,
+                    bucketValidation,
+                    
+                    recommendation: isValid 
+                        ? (warnings.length > 0 ? 'Proceed with caution - monitor customer response closely' : 'Adjustments are within acceptable constraints')
+                        : 'Address errors before implementing pricing changes',
+                    
+                    validatedAt: new Date().toISOString()
+                };
+            }
+
+            // Helper Methods
+
+            /**
+             * Assess overall risk across all bucket impacts
+             * @private
+             */
+            assessOverallRisk(bucketImpacts, averageChurnRisk) {
+                let totalHighRisk = 0;
+                let totalMediumRisk = 0;
+                let totalCustomers = 0;
+                let maxPriceIncrease = 0;
+
+                for (const impact of bucketImpacts.values()) {
+                    totalCustomers += impact.customerCount;
+                    
+                    if (impact.riskLevel === 'high') {
+                        totalHighRisk += impact.customerCount;
+                    } else if (impact.riskLevel === 'medium') {
+                        totalMediumRisk += impact.customerCount;
+                    }
+                    
+                    maxPriceIncrease = Math.max(maxPriceIncrease, Math.abs(impact.priceChangePercent));
+                }
+
+                const highRiskPercent = totalCustomers > 0 ? (totalHighRisk / totalCustomers) * 100 : 0;
+                const mediumRiskPercent = totalCustomers > 0 ? (totalMediumRisk / totalCustomers) * 100 : 0;
+
+                let overallRisk = 'low';
+                if (highRiskPercent > 25 || averageChurnRisk > 0.1 || maxPriceIncrease > 25) {
+                    overallRisk = 'high';
+                } else if (highRiskPercent > 10 || mediumRiskPercent > 50 || maxPriceIncrease > 15) {
+                    overallRisk = 'medium';
+                }
+
+                return {
+                    level: overallRisk,
+                    highRiskCustomers: totalHighRisk,
+                    mediumRiskCustomers: totalMediumRisk,
+                    highRiskPercent: Math.round(highRiskPercent * 10) / 10,
+                    mediumRiskPercent: Math.round(mediumRiskPercent * 10) / 10,
+                    averageChurnRisk: Math.round(averageChurnRisk * 1000) / 1000,
+                    maxPriceIncrease: Math.round(maxPriceIncrease * 10) / 10
+                };
+            }
+
+            /**
+             * Generate recommendations based on impact analysis
+             * @private
+             */
+            generateImpactRecommendations(bucketImpacts) {
+                const recommendations = [];
+                
+                for (const impact of bucketImpacts.values()) {
+                    if (impact.riskLevel === 'high') {
+                        recommendations.push(`Consider reducing price increase for ${impact.bucketName} (${impact.customerCount} customers at risk)`);
+                    }
+                    
+                    if (impact.churnRisk > 0.15) {
+                        recommendations.push(`High churn risk in ${impact.bucketName} - implement customer retention strategies`);
+                    }
+                    
+                    if (impact.volumeChangePercent < -25) {
+                        recommendations.push(`Significant volume decline expected in ${impact.bucketName} - consider alternative approaches`);
+                    }
+                    
+                    if (impact.newPrice > this.constraints.marketCeilingPrice) {
+                        recommendations.push(`${impact.bucketName} pricing above market ceiling - competitive risk`);
+                    }
+                }
+
+                if (recommendations.length === 0) {
+                    recommendations.push('Pricing adjustments appear reasonable with acceptable risk levels');
+                }
+
+                return recommendations;
+            }
+
+            /**
+             * Assess risk factors for individual bucket
+             * @private
+             */
+            assessBucketRisk(bucket, adjustment, newPrice, churnRisk) {
+                const risks = [];
+                
+                // Price increase magnitude risk
+                if (adjustment.adjustmentType === 'percentage' && adjustment.adjustment > 20) {
+                    risks.push('large_price_increase');
+                } else if (adjustment.adjustmentType === 'absolute' && Math.abs(adjustment.adjustment) > 50) {
+                    risks.push('large_absolute_increase');
+                }
+                
+                // Market position risk
+                if (newPrice > this.constraints.marketCeilingPrice) {
+                    risks.push('above_market_ceiling');
+                }
+                
+                // Customer retention risk
+                if (churnRisk > 0.1) {
+                    risks.push('high_churn_probability');
+                }
+                
+                // Volume sensitivity risk
+                if (bucket.totalVolume > 1000 && adjustment.adjustment > 10) {
+                    risks.push('high_volume_sensitivity');
+                }
+                
+                // Low margin vulnerability
+                if (bucket.averageMargin < 10 && adjustment.adjustment > 5) {
+                    risks.push('low_margin_vulnerability');
+                }
+
+                return risks;
+            }
+
+            /**
+             * Calculate risk level based on risk factors
+             * @private
+             */
+            calculateRiskLevel(riskFactors) {
+                if (riskFactors.includes('large_price_increase') || 
+                    riskFactors.includes('high_churn_probability') || 
+                    riskFactors.includes('above_market_ceiling')) {
+                    return 'high';
+                }
+                
+                if (riskFactors.length >= 2) {
+                    return 'medium';
+                }
+                
+                return riskFactors.length > 0 ? 'low' : 'minimal';
+            }
+
+            /**
+             * Categorize risk based on numeric risk score
+             * @private
+             */
+            categorizeRisk(riskScore) {
+                if (riskScore >= 0.15) return 'high';
+                if (riskScore >= 0.08) return 'medium';
+                if (riskScore >= 0.03) return 'low';
+                return 'minimal';
+            }
+
+            /**
+             * Calculate weighted average margin across buckets
+             * @private
+             */
+            calculateWeightedAverageMargin(buckets) {
+                let totalRevenueWeightedMargin = 0;
+                let totalRevenue = 0;
+                
+                for (const bucket of buckets.values()) {
+                    const bucketRevenue = bucket.averagePrice * bucket.totalVolume;
+                    totalRevenueWeightedMargin += (bucket.averageMargin / 100) * bucketRevenue;
+                    totalRevenue += bucketRevenue;
+                }
+                
+                return totalRevenue > 0 ? (totalRevenueWeightedMargin / totalRevenue) * 100 : 0;
+            }
+
+            /**
+             * Select optimal strategy from available options
+             * @private
+             */
+            selectOptimalStrategy(strategies) {
+                if (strategies.length === 0) return null;
+                
+                // Score strategies based on multiple factors
+                const scoredStrategies = strategies.map(strategy => {
+                    const weights = this.strategyWeights[strategy.strategyType] || { risk: 0.3, impact: 0.5, feasibility: 0.2 };
+                    
+                    let riskScore = 1;
+                    switch (strategy.riskLevel) {
+                        case 'high': riskScore = 0.2; break;
+                        case 'medium': riskScore = 0.6; break;
+                        case 'low': riskScore = 0.8; break;
+                        default: riskScore = 1;
+                    }
+                    
+                    const impactScore = strategy.gapClosurePercent ? strategy.gapClosurePercent / 100 : 0;
+                    const feasibilityScore = strategy.feasible ? 1 : 0;
+                    
+                    const totalScore = (riskScore * weights.risk) + 
+                                     (impactScore * weights.impact) + 
+                                     (feasibilityScore * weights.feasibility);
+                    
+                    return { strategy, score: totalScore };
+                });
+                
+                // Return strategy with highest score
+                return scoredStrategies.sort((a, b) => b.score - a.score)[0].strategy;
+            }
+
+            /**
+             * Generate implementation notes for strategy
+             * @private
+             */
+            generateImplementationNotes(strategy) {
+                if (!strategy) return [];
+                
+                const notes = [
+                    `Implement ${strategy.name.toLowerCase()} over ${strategy.timeToImplement}`,
+                    `Expected complexity: ${strategy.implementationComplexity}`,
+                ];
+                
+                if (strategy.riskLevel !== 'low' && strategy.riskLevel !== 'minimal') {
+                    notes.push('Monitor customer feedback closely during implementation');
+                }
+                
+                if (strategy.averageChurnRisk > 0.05) {
+                    notes.push('Consider customer retention initiatives alongside price changes');
+                }
+                
+                if (strategy.multiPhaseRecommendation) {
+                    notes.push('Consider implementing in multiple phases to reduce risk');
+                }
+                
+                return notes;
+            }
+
+            /**
+             * Generate risk warnings for strategy
+             * @private
+             */
+            generateRiskWarnings(strategy) {
+                if (!strategy) return [];
+                
+                const warnings = [];
+                
+                if (strategy.riskLevel === 'high') {
+                    warnings.push('HIGH RISK: Significant potential for customer churn');
+                }
+                
+                if (strategy.averageChurnRisk > 0.1) {
+                    warnings.push(`Customer churn risk: ${(strategy.averageChurnRisk * 100).toFixed(1)}%`);
+                }
+                
+                if (strategy.remainingGap > 0) {
+                    warnings.push(`Strategy will not fully close profit gap - $${strategy.remainingGap.toLocaleString()} remaining`);
+                }
+                
+                return warnings;
+            }
+
+            /**
+             * Compare risk levels for filtering
+             * @private
+             */
+            compareRiskLevels(level1, level2) {
+                const levels = { minimal: 0, low: 1, medium: 2, high: 3 };
+                return levels[level1] - levels[level2];
+            }
+
+            /**
+             * Update average calculation time metric
+             * @private
+             */
+            updateAverageCalculationTime(newTime) {
+                const currentAvg = this.metrics.averageCalculationTime;
+                const count = this.metrics.calculationsPerformed;
+                this.metrics.averageCalculationTime = ((currentAvg * (count - 1)) + newTime) / count;
+            }
+
+            /**
+             * Generate optimization strategies for surplus profit situations
+             * @private
+             */
+            generateOptimizationStrategies(surplus, buckets) {
+                // When profit exceeds goal, focus on customer retention and market share
+                return {
+                    strategyType: 'optimization',
+                    name: 'Retention & Growth Optimization',
+                    description: 'Optimize pricing for customer retention and market expansion',
+                    
+                    expectedProfitIncrease: 0, // Maintain current profit
+                    surplusAmount: surplus,
+                    
+                    riskLevel: 'low',
+                    feasible: true,
+                    
+                    pros: [
+                        'Strengthen customer relationships',
+                        'Improve market competitive position',
+                        'Build long-term customer loyalty'
+                    ],
+                    cons: [
+                        'Reduces short-term profit margins',
+                        'May not maximize immediate revenue'
+                    ],
+                    
+                    recommendedActions: [
+                        'Consider small price reductions for volume customers',
+                        'Invest surplus in customer service improvements',
+                        'Explore market expansion opportunities'
+                    ],
+                    
+                    calculatedAt: new Date().toISOString()
+                };
+            }
+            
+            /**
+             * Get calculation performance metrics
+             * @returns {Object} Performance metrics
+             */
+            getMetrics() {
+                return {
+                    ...this.metrics,
+                    cacheSize: this.calculationCache.size,
+                    averageCalculationTime: Math.round(this.metrics.averageCalculationTime * 100) / 100
+                };
+            }
+
+            /**
+             * Clear calculation cache
+             */
+            clearCache() {
+                this.calculationCache.clear();
+            }
+
+            /**
+             * Reset all metrics
+             */
+            resetMetrics() {
+                this.metrics = {
+                    calculationsPerformed: 0,
+                    totalRevenueAnalyzed: 0,
+                    strategiesGenerated: 0,
+                    averageCalculationTime: 0
+                };
+                this.clearCache();
+            }
+        }
 
         // Initialize the application
         function init() {
@@ -643,6 +2832,11 @@
                 updateCostProjections();
             } else if (step === 4) {
                 updateStep4Summary();
+            } else if (step === 5) {
+                initializeStep5();
+            } else if (step === 6) {
+                // Step 6 placeholder - no initialization needed yet
+                console.log('Step 6 - Final Results loaded');
             }
         }
 
@@ -781,6 +2975,12 @@
             } else {
                 document.getElementById('goalDifferential').textContent = 'No goal set';
             }
+            
+            // Enable Step 5 continue button if we have data
+            const continueBtn = document.getElementById('continueToCustomerPricing');
+            if (continueBtn && totalSelectedRevenue > 0 && profitGoal > 0 && projectedProfit > 0) {
+                continueBtn.disabled = false;
+            }
         }
 
         function generateReport() {
@@ -834,8 +3034,1328 @@
             // Add any additional event listeners here
         }
 
+        // Step 5: Customer Pricing Adjustments Functions
+        
+        /**
+         * Initialize Step 5 - Customer Pricing Adjustments
+         */
+        function initializeStep5() {
+            if (!step5Initialized) {
+                // Initialize engines
+                window.analyticsEngine = new CustomerAnalyticsEngine();
+                window.bucketManager = new CustomerBucketManager();
+                window.overlapEngine = new OverlapResolutionEngine();
+                window.pricingCalculator = new PricingAdjustmentCalculator();
+                
+                step5Initialized = true;
+            }
+            
+            // Analyze customer data
+            customerAnalytics = window.analyticsEngine.analyzeCustomers();
+            
+            // Update profit gap display
+            updateProfitGapDisplay();
+            
+            // Update customer analytics overview
+            updateCustomerAnalyticsOverview();
+            
+            // Initialize UI components
+            renderBucketsList();
+            updateCategorizationProgress();
+            updatePricingImpact();
+            
+            // Enable Step 4 continue button (we have data now)
+            const continueBtn = document.getElementById('continueToCustomerPricing');
+            if (continueBtn && totalSelectedRevenue > 0 && profitGoal > 0) {
+                continueBtn.disabled = false;
+            }
+        }
+        
+        /**
+         * Update the profit gap display at the top of Step 5
+         */
+        function updateProfitGapDisplay() {
+            // Calculate projected profit from Step 4
+            const manufacturing = parseFloat(document.getElementById('futureManufacturing')?.value) || 0;
+            const labor = parseFloat(document.getElementById('futureLabor')?.value) || 0;
+            const fixed = parseFloat(document.getElementById('futureFixed')?.value) || 0;
+            
+            const volumeToUse = projectedVolume > 0 ? projectedVolume : totalSelectedVolume;
+            const manufacturingTotal = manufacturing * volumeToUse;
+            const totalProjectedCosts = manufacturingTotal + labor + fixed;
+            
+            const avgRevenuePerYard = totalSelectedRevenue > 0 && totalSelectedVolume > 0 ? totalSelectedRevenue / totalSelectedVolume : 0;
+            const projectedRevenue = avgRevenuePerYard * volumeToUse;
+            const currentProjectedProfit = projectedRevenue - totalProjectedCosts;
+            
+            // Update displays
+            document.getElementById('currentProjectedProfit').textContent = '$' + currentProjectedProfit.toLocaleString();
+            document.getElementById('targetProfitGoal').textContent = '$' + profitGoal.toLocaleString();
+            
+            const gapAmount = profitGoal - currentProjectedProfit;
+            const gapElement = document.getElementById('profitGapAmount');
+            
+            if (gapAmount > 0) {
+                gapElement.textContent = '$' + gapAmount.toLocaleString();
+                gapElement.className = 'gap-negative';
+            } else {
+                gapElement.textContent = '$' + Math.abs(gapAmount).toLocaleString() + ' surplus';
+                gapElement.className = 'gap-positive';
+            }
+        }
+        
+        /**
+         * Update customer analytics overview statistics
+         */
+        function updateCustomerAnalyticsOverview() {
+            const stats = window.analyticsEngine.calculateCustomerStats();
+            if (!stats) return;
+            
+            document.getElementById('totalCustomers').textContent = stats.totalCustomers;
+            document.getElementById('avgCustomerVolume').textContent = Math.round(stats.avgVolume);
+            document.getElementById('avgCustomerPrice').textContent = '$' + Math.round(stats.avgPrice);
+            document.getElementById('avgCustomerMargin').textContent = stats.avgMargin.toFixed(1) + '%';
+        }
+        
+        /**
+         * Show the create bucket modal
+         */
+        function showCreateBucketModal() {
+            document.getElementById('createBucketModal').style.display = 'block';
+            // Clear form
+            document.getElementById('bucketForm').reset();
+        }
+        
+        /**
+         * Close the create bucket modal
+         */
+        function closeCreateBucketModal() {
+            document.getElementById('createBucketModal').style.display = 'none';
+        }
+        
+        /**
+         * Create a new customer bucket
+         */
+        function createBucket() {
+            const bucketName = document.getElementById('bucketName').value.trim();
+            
+            if (!bucketName) {
+                alert('Please enter a bucket name.');
+                return;
+            }
+            
+            const volumeMin = parseFloat(document.getElementById('volumeMin').value) || null;
+            const volumeMax = parseFloat(document.getElementById('volumeMax').value) || null;
+            const priceMin = parseFloat(document.getElementById('priceMin').value) || null;
+            const priceMax = parseFloat(document.getElementById('priceMax').value) || null;
+            const profitMarginMin = parseFloat(document.getElementById('profitMarginMin').value) || null;
+            const profitMarginMax = parseFloat(document.getElementById('profitMarginMax').value) || null;
+            const priceAdjustment = parseFloat(document.getElementById('priceAdjustment').value) || 0;
+            const adjustmentType = document.getElementById('adjustmentType').value;
+            
+            // Validation
+            if (volumeMin !== null && volumeMax !== null && volumeMin > volumeMax) {
+                alert('Volume minimum cannot be greater than maximum.');
+                return;
+            }
+            
+            if (priceMin !== null && priceMax !== null && priceMin > priceMax) {
+                alert('Price minimum cannot be greater than maximum.');
+                return;
+            }
+            
+            if (profitMarginMin !== null && profitMarginMax !== null && profitMarginMin > profitMarginMax) {
+                alert('Profit margin minimum cannot be greater than maximum.');
+                return;
+            }
+            
+            const bucketId = 'bucket-' + Date.now();
+            const bucket = {
+                bucketId,
+                bucketName,
+                criteria: {
+                    volumeMin,
+                    volumeMax,
+                    priceMin,
+                    priceMax,
+                    profitMarginMin,
+                    profitMarginMax
+                },
+                assignedCustomers: [],
+                customerCount: 0,
+                totalVolume: 0,
+                averagePrice: 0,
+                averageMargin: 0,
+                adjustments: {
+                    priceAdjustment,
+                    adjustmentType
+                }
+            };
+            
+            // Create bucket using bucket manager
+            try {
+                window.bucketManager.createBucket(bucketId, bucket);
+                customerBuckets.set(bucketId, bucket);
+                
+                // Re-render buckets list
+                renderBucketsList();
+                
+                // Close modal
+                closeCreateBucketModal();
+                
+                // Update progress
+                updateCategorizationProgress();
+                
+                // Check for overlaps
+                checkForOverlaps();
+                
+                // Update pricing impact
+                updatePricingImpact();
+                
+            } catch (error) {
+                alert('Error creating bucket: ' + error.message);
+            }
+        }
+        
+        /**
+         * Render the buckets list
+         */
+        function renderBucketsList() {
+            const container = document.getElementById('bucketsList');
+            
+            if (customerBuckets.size === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>No customer buckets created yet. Create your first bucket to start categorizing customers.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            customerBuckets.forEach((bucket, bucketId) => {
+                html += renderBucketCard(bucket);
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        /**
+         * Render a single bucket card
+         * @param {Object} bucket Bucket data
+         * @returns {string} HTML string
+         */
+        function renderBucketCard(bucket) {
+            const criteria = [];
+            
+            if (bucket.criteria.volumeMin !== null || bucket.criteria.volumeMax !== null) {
+                const min = bucket.criteria.volumeMin !== null ? bucket.criteria.volumeMin : '0';
+                const max = bucket.criteria.volumeMax !== null ? bucket.criteria.volumeMax : '∞';
+                criteria.push(`Volume: ${min} - ${max} yards`);
+            }
+            
+            if (bucket.criteria.priceMin !== null || bucket.criteria.priceMax !== null) {
+                const min = bucket.criteria.priceMin !== null ? '$' + bucket.criteria.priceMin : '$0';
+                const max = bucket.criteria.priceMax !== null ? '$' + bucket.criteria.priceMax : '$∞';
+                criteria.push(`Price: ${min} - ${max}/yard`);
+            }
+            
+            if (bucket.criteria.profitMarginMin !== null || bucket.criteria.profitMarginMax !== null) {
+                const min = bucket.criteria.profitMarginMin !== null ? bucket.criteria.profitMarginMin : '0';
+                const max = bucket.criteria.profitMarginMax !== null ? bucket.criteria.profitMarginMax : '∞';
+                criteria.push(`Margin: ${min}% - ${max}%`);
+            }
+            
+            const adjustmentText = bucket.adjustments.priceAdjustment !== 0 ? 
+                (bucket.adjustments.adjustmentType === 'percentage' ? 
+                    `${bucket.adjustments.priceAdjustment > 0 ? '+' : ''}${bucket.adjustments.priceAdjustment}%` :
+                    `${bucket.adjustments.priceAdjustment > 0 ? '+' : ''}$${bucket.adjustments.priceAdjustment}/yard`) :
+                'No adjustment';
+            
+            return `
+                <div class="bucket-card" data-bucket-id="${bucket.bucketId}">
+                    <div class="bucket-header">
+                        <div class="bucket-name">${bucket.bucketName}</div>
+                        <div class="bucket-actions">
+                            <button class="btn btn-secondary" onclick="deleteBucket('${bucket.bucketId}')">Delete</button>
+                        </div>
+                    </div>
+                    <div class="bucket-criteria">
+                        ${criteria.map(c => `<div class="criteria-item">${c}</div>`).join('')}
+                        <div class="criteria-item">Adjustment: ${adjustmentText}</div>
+                    </div>
+                    <div class="bucket-stats">
+                        <span>${bucket.assignedCustomers.length} customers assigned</span>
+                        <span>Total volume: ${bucket.totalVolume.toFixed(1)} yards</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Delete a bucket
+         * @param {string} bucketId Bucket ID to delete
+         */
+        function deleteBucket(bucketId) {
+            if (!confirm('Are you sure you want to delete this bucket? All customer assignments will be removed.')) {
+                return;
+            }
+            
+            // Remove bucket
+            customerBuckets.delete(bucketId);
+            
+            // Clear customer assignments
+            customerAssignments.forEach((assignment, customerId) => {
+                if (assignment === bucketId) {
+                    customerAssignments.delete(customerId);
+                    // Update customer analytics bucketId
+                    const customer = customerAnalytics.find(c => c.customerId === customerId);
+                    if (customer) {
+                        customer.bucketId = null;
+                    }
+                }
+            });
+            
+            // Re-render
+            renderBucketsList();
+            updateCategorizationProgress();
+            checkForOverlaps();
+            updatePricingImpact();
+        }
+        
+        /**
+         * Check for customer overlaps and show resolution panel if needed
+         */
+        function checkForOverlaps() {
+            overlapConflicts = window.overlapEngine.detectOverlaps(customerAnalytics, customerBuckets);
+            
+            if (overlapConflicts.length > 0) {
+                renderOverlapPanel();
+                document.getElementById('overlapPanel').style.display = 'block';
+            } else {
+                document.getElementById('overlapPanel').style.display = 'none';
+            }
+        }
+        
+        /**
+         * Render the overlap resolution panel
+         */
+        function renderOverlapPanel() {
+            const container = document.getElementById('overlapsList');
+            
+            let html = '';
+            overlapConflicts.forEach(conflict => {
+                html += `
+                    <div class="overlap-item" data-customer-id="${conflict.customerId}">
+                        <div class="overlap-customer">${conflict.customerName}</div>
+                        <p>Eligible for: ${conflict.eligibleBuckets.map(b => b.bucketName).join(', ')}</p>
+                        <div class="overlap-options">
+                            ${conflict.eligibleBuckets.map(bucket => `
+                                <div class="overlap-option ${bucket.bucketId === conflict.recommendedBucket ? 'selected' : ''}" 
+                                     onclick="resolveOverlap('${conflict.customerId}', '${bucket.bucketId}')">
+                                    ${bucket.bucketName} (${(bucket.matchScore * 100).toFixed(0)}% match)
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        /**
+         * Resolve overlap by assigning customer to specific bucket
+         * @param {string} customerId Customer ID
+         * @param {string} bucketId Chosen bucket ID
+         */
+        function resolveOverlap(customerId, bucketId) {
+            // Assign customer to bucket
+            customerAssignments.set(customerId, bucketId);
+            
+            // Update customer analytics
+            const customer = customerAnalytics.find(c => c.customerId === customerId);
+            if (customer) {
+                customer.bucketId = bucketId;
+            }
+            
+            // Update bucket
+            const bucket = customerBuckets.get(bucketId);
+            if (bucket) {
+                if (!bucket.assignedCustomers.includes(customerId)) {
+                    bucket.assignedCustomers.push(customerId);
+                    bucket.customerCount++;
+                    
+                    // Update bucket stats
+                    updateBucketStats(bucketId);
+                }
+            }
+            
+            // Resolve conflict in engine
+            window.overlapEngine.resolveConflict(customerId, bucketId);
+            
+            // Re-check for overlaps
+            checkForOverlaps();
+            
+            // Update progress and pricing
+            updateCategorizationProgress();
+            updatePricingImpact();
+            renderBucketsList();
+        }
+        
+        /**
+         * Update bucket statistics
+         * @param {string} bucketId Bucket ID
+         */
+        function updateBucketStats(bucketId) {
+            const bucket = customerBuckets.get(bucketId);
+            if (!bucket) return;
+            
+            const assignedCustomers = customerAnalytics.filter(c => c.bucketId === bucketId);
+            
+            bucket.assignedCustomers = assignedCustomers.map(c => c.customerId);
+            bucket.customerCount = assignedCustomers.length;
+            bucket.totalVolume = assignedCustomers.reduce((sum, c) => sum + c.totalVolume, 0);
+            bucket.averagePrice = assignedCustomers.length > 0 ? 
+                assignedCustomers.reduce((sum, c) => sum + c.averageUnitPrice, 0) / assignedCustomers.length : 0;
+            bucket.averageMargin = assignedCustomers.length > 0 ? 
+                assignedCustomers.reduce((sum, c) => sum + c.profitMargin, 0) / assignedCustomers.length : 0;
+        }
+        
+        /**
+         * Update categorization progress
+         */
+        function updateCategorizationProgress() {
+            const totalCustomers = customerAnalytics.length;
+            const categorizedCount = customerAnalytics.filter(c => c.bucketId !== null).length;
+            const percentage = totalCustomers > 0 ? Math.round((categorizedCount / totalCustomers) * 100) : 0;
+            
+            document.getElementById('categorizedCount').textContent = categorizedCount;
+            document.getElementById('totalCustomerCount').textContent = totalCustomers;
+            document.getElementById('categorizationPercent').textContent = percentage + '%';
+            
+            // Update progress bar
+            document.getElementById('progressFill').style.width = percentage + '%';
+            
+            // Enable/disable bulk assign button
+            const bulkBtn = document.getElementById('bulkAssignBtn');
+            const remainingCount = totalCustomers - categorizedCount;
+            bulkBtn.disabled = remainingCount === 0 || customerBuckets.size === 0;
+            
+            // Enable/disable continue button
+            const continueBtn = document.getElementById('continueToFinalResults');
+            continueBtn.disabled = percentage < 70; // Require at least 70% categorization
+        }
+        
+        /**
+         * Show bulk assign modal
+         */
+        function showBulkAssignModal() {
+            const modal = document.getElementById('bulkAssignModal');
+            const select = document.getElementById('bulkAssignBucket');
+            const countSpan = document.getElementById('unassignedCustomersCount');
+            
+            // Clear and populate bucket options
+            select.innerHTML = '<option value="">Select a bucket...</option>';
+            customerBuckets.forEach((bucket, bucketId) => {
+                select.innerHTML += `<option value="${bucketId}">${bucket.bucketName}</option>`;
+            });
+            
+            // Update count
+            const unassignedCount = customerAnalytics.filter(c => c.bucketId === null).length;
+            countSpan.textContent = unassignedCount;
+            
+            modal.style.display = 'block';
+        }
+        
+        /**
+         * Close bulk assign modal
+         */
+        function closeBulkAssignModal() {
+            document.getElementById('bulkAssignModal').style.display = 'none';
+        }
+        
+        /**
+         * Perform bulk assignment
+         */
+        function performBulkAssign() {
+            const selectedBucketId = document.getElementById('bulkAssignBucket').value;
+            
+            if (!selectedBucketId) {
+                alert('Please select a bucket for assignment.');
+                return;
+            }
+            
+            const unassignedCustomers = customerAnalytics.filter(c => c.bucketId === null);
+            
+            unassignedCustomers.forEach(customer => {
+                customerAssignments.set(customer.customerId, selectedBucketId);
+                customer.bucketId = selectedBucketId;
+                
+                const bucket = customerBuckets.get(selectedBucketId);
+                if (bucket && !bucket.assignedCustomers.includes(customer.customerId)) {
+                    bucket.assignedCustomers.push(customer.customerId);
+                    bucket.customerCount++;
+                }
+            });
+            
+            // Update bucket stats
+            updateBucketStats(selectedBucketId);
+            
+            // Update UI
+            updateCategorizationProgress();
+            updatePricingImpact();
+            renderBucketsList();
+            closeBulkAssignModal();
+        }
+        
+        /**
+         * Update pricing impact display
+         */
+        function updatePricingImpact() {
+            // Calculate current revenue impact from all bucket adjustments
+            let totalRevenueImpact = 0;
+            let totalCurrentRevenue = 0;
+            
+            customerBuckets.forEach((bucket, bucketId) => {
+                const assignedCustomers = customerAnalytics.filter(c => c.bucketId === bucketId);
+                
+                assignedCustomers.forEach(customer => {
+                    const currentRevenue = customer.totalRevenue;
+                    totalCurrentRevenue += currentRevenue;
+                    
+                    if (bucket.adjustments.priceAdjustment !== 0) {
+                        let newPrice = customer.averageUnitPrice;
+                        
+                        if (bucket.adjustments.adjustmentType === 'percentage') {
+                            newPrice = newPrice * (1 + bucket.adjustments.priceAdjustment / 100);
+                        } else {
+                            newPrice = newPrice + bucket.adjustments.priceAdjustment;
+                        }
+                        
+                        const newRevenue = customer.totalVolume * newPrice;
+                        totalRevenueImpact += (newRevenue - currentRevenue);
+                    }
+                });
+            });
+            
+            // Calculate new projected profit
+            const currentProjectedProfit = parseFloat(document.getElementById('currentProjectedProfit').textContent.replace(/[$,]/g, '')) || 0;
+            const newProjectedProfit = currentProjectedProfit + totalRevenueImpact;
+            
+            // Calculate goal achievement
+            const goalAchievement = profitGoal > 0 ? (newProjectedProfit / profitGoal * 100) : 0;
+            
+            // Update displays
+            document.getElementById('revenueImpact').textContent = (totalRevenueImpact >= 0 ? '+' : '') + '$' + totalRevenueImpact.toLocaleString();
+            document.getElementById('newProjectedProfit').textContent = '$' + newProjectedProfit.toLocaleString();
+            document.getElementById('goalAchievement').textContent = goalAchievement.toFixed(1) + '%';
+        }
+
+        /**
+         * CustomerBucketManager - Core customer categorization and bucket management system
+         * 
+         * Handles creation, assignment, and management of customer buckets with volume/price/profit criteria.
+         * Ensures exclusive bucket assignment, conflict resolution, and progress tracking.
+         * 
+         * Business Rules:
+         * - Maximum 20 buckets to prevent over-segmentation
+         * - Customers can only be in one bucket at a time (exclusive assignment)
+         * - Real-time overlap detection and resolution
+         * - Progress tracking showing % of customer base categorized
+         * 
+         * @class CustomerBucketManager
+         * @version 1.0.0
+         * @author Claude Code Implementation
+         */
+        class CustomerBucketManager {
+            constructor() {
+                /** @type {Map<string, CustomerBucket>} Bucket storage by bucketId */
+                this.buckets = new Map();
+                
+                /** @type {Map<string, string>} Customer to bucket mapping (customerId -> bucketId) */
+                this.customerToBucket = new Map();
+                
+                /** @type {Array<CustomerAnalytics>} All customer analytics data */
+                this.customers = [];
+                
+                /** @type {number} Maximum allowed buckets to prevent over-segmentation */
+                this.MAX_BUCKETS = 20;
+                
+                /** @type {number} Auto-incrementing bucket ID counter */
+                this.bucketCounter = 1;
+                
+                /** @type {Array<Function>} Event listeners for bucket changes */
+                this.eventListeners = [];
+                
+                this.initializeValidation();
+            }
+
+            /**
+             * Initialize validation rules and constraints
+             * @private
+             */
+            initializeValidation() {
+                /** @type {Object} Business validation constraints */
+                this.constraints = {
+                    maxPricePerYard: 500.00,
+                    minPricePerYard: 0.01,
+                    maxProfitMargin: 200.0,
+                    minProfitMargin: -100.0,
+                    minVolume: 0.1,
+                    maxVolume: 1000000
+                };
+            }
+
+            /**
+             * Load customer analytics data from CustomerAnalyticsEngine
+             * @param {Array<CustomerAnalytics>} customerData - Array of customer analytics
+             * @throws {Error} If customer data is invalid or missing required fields
+             */
+            loadCustomerData(customerData) {
+                if (!Array.isArray(customerData)) {
+                    throw new Error('Customer data must be an array');
+                }
+
+                // Validate customer data structure
+                for (const customer of customerData) {
+                    this.validateCustomerStructure(customer);
+                }
+
+                this.customers = customerData.map(customer => ({
+                    ...customer,
+                    bucketId: customer.bucketId || null
+                }));
+
+                // Rebuild customer-to-bucket mapping
+                this.customerToBucket.clear();
+                this.customers.forEach(customer => {
+                    if (customer.bucketId) {
+                        this.customerToBucket.set(customer.customerId, customer.bucketId);
+                    }
+                });
+
+                this.notifyListeners('dataLoaded', { customerCount: this.customers.length });
+            }
+
+            /**
+             * Validate customer analytics structure
+             * @private
+             * @param {CustomerAnalytics} customer - Customer data to validate
+             * @throws {Error} If customer structure is invalid
+             */
+            validateCustomerStructure(customer) {
+                const required = ['customerId', 'customerName', 'totalVolume', 'averageUnitPrice', 'profitMargin'];
+                
+                for (const field of required) {
+                    if (customer[field] === undefined || customer[field] === null) {
+                        throw new Error(`Customer missing required field: ${field}`);
+                    }
+                }
+
+                if (typeof customer.totalVolume !== 'number' || customer.totalVolume < 0) {
+                    throw new Error(`Invalid totalVolume for customer ${customer.customerName}`);
+                }
+
+                if (typeof customer.averageUnitPrice !== 'number' || customer.averageUnitPrice <= 0) {
+                    throw new Error(`Invalid averageUnitPrice for customer ${customer.customerName}`);
+                }
+
+                if (typeof customer.profitMargin !== 'number') {
+                    throw new Error(`Invalid profitMargin for customer ${customer.customerName}`);
+                }
+            }
+
+            /**
+             * Create a new customer bucket with specified criteria
+             * @param {string} bucketName - Human-readable bucket name
+             * @param {BucketCriteria} criteria - Volume, price, and profit criteria
+             * @returns {string} The generated bucketId
+             * @throws {Error} If bucket limit reached, invalid criteria, or name already exists
+             */
+            createBucket(bucketName, criteria) {
+                // Validate bucket limit
+                if (this.buckets.size >= this.MAX_BUCKETS) {
+                    throw new Error(`Maximum bucket limit (${this.MAX_BUCKETS}) reached. Delete existing buckets to create new ones.`);
+                }
+
+                // Validate bucket name
+                if (!bucketName || typeof bucketName !== 'string' || bucketName.trim().length === 0) {
+                    throw new Error('Bucket name must be a non-empty string');
+                }
+
+                // Check for duplicate bucket names
+                const trimmedName = bucketName.trim();
+                for (const bucket of this.buckets.values()) {
+                    if (bucket.bucketName.toLowerCase() === trimmedName.toLowerCase()) {
+                        throw new Error(`Bucket name "${trimmedName}" already exists. Choose a different name.`);
+                    }
+                }
+
+                // Validate criteria
+                this.validateBucketCriteria(criteria);
+
+                // Generate bucket ID
+                const bucketId = `bucket-${this.bucketCounter++}`;
+
+                // Create bucket object
+                const bucket = {
+                    bucketId,
+                    bucketName: trimmedName,
+                    criteria: { ...criteria },
+                    assignedCustomers: [],
+                    customerCount: 0,
+                    totalVolume: 0,
+                    averagePrice: 0,
+                    averageMargin: 0,
+                    adjustments: {
+                        priceAdjustment: 0,
+                        adjustmentType: 'absolute'
+                    },
+                    createdAt: new Date().toISOString(),
+                    lastModified: new Date().toISOString()
+                };
+
+                this.buckets.set(bucketId, bucket);
+                
+                this.notifyListeners('bucketCreated', { bucket });
+                
+                return bucketId;
+            }
+
+            /**
+             * Validate bucket criteria for logical consistency and business rules
+             * @param {BucketCriteria} criteria - Criteria to validate
+             * @throws {Error} If criteria are invalid or inconsistent
+             */
+            validateBucketCriteria(criteria) {
+                if (!criteria || typeof criteria !== 'object') {
+                    throw new Error('Bucket criteria must be a valid object');
+                }
+
+                // Volume validation
+                if (criteria.volumeMin !== null && criteria.volumeMin !== undefined) {
+                    if (typeof criteria.volumeMin !== 'number' || criteria.volumeMin < this.constraints.minVolume) {
+                        throw new Error(`Volume minimum must be a number >= ${this.constraints.minVolume}`);
+                    }
+                }
+
+                if (criteria.volumeMax !== null && criteria.volumeMax !== undefined) {
+                    if (typeof criteria.volumeMax !== 'number' || criteria.volumeMax > this.constraints.maxVolume) {
+                        throw new Error(`Volume maximum must be a number <= ${this.constraints.maxVolume}`);
+                    }
+                }
+
+                if (criteria.volumeMin !== null && criteria.volumeMax !== null && 
+                    criteria.volumeMin !== undefined && criteria.volumeMax !== undefined) {
+                    if (criteria.volumeMin > criteria.volumeMax) {
+                        throw new Error('Volume minimum cannot be greater than volume maximum');
+                    }
+                }
+
+                // Price validation
+                if (criteria.priceMin !== null && criteria.priceMin !== undefined) {
+                    if (typeof criteria.priceMin !== 'number' || 
+                        criteria.priceMin < this.constraints.minPricePerYard || 
+                        criteria.priceMin > this.constraints.maxPricePerYard) {
+                        throw new Error(`Price minimum must be between $${this.constraints.minPricePerYard} and $${this.constraints.maxPricePerYard} per yard`);
+                    }
+                }
+
+                if (criteria.priceMax !== null && criteria.priceMax !== undefined) {
+                    if (typeof criteria.priceMax !== 'number' || 
+                        criteria.priceMax < this.constraints.minPricePerYard || 
+                        criteria.priceMax > this.constraints.maxPricePerYard) {
+                        throw new Error(`Price maximum must be between $${this.constraints.minPricePerYard} and $${this.constraints.maxPricePerYard} per yard`);
+                    }
+                }
+
+                if (criteria.priceMin !== null && criteria.priceMax !== null && 
+                    criteria.priceMin !== undefined && criteria.priceMax !== undefined) {
+                    if (criteria.priceMin > criteria.priceMax) {
+                        throw new Error('Price minimum cannot be greater than price maximum');
+                    }
+                }
+
+                // Profit margin validation
+                if (criteria.profitMarginMin !== null && criteria.profitMarginMin !== undefined) {
+                    if (typeof criteria.profitMarginMin !== 'number' || 
+                        criteria.profitMarginMin < this.constraints.minProfitMargin || 
+                        criteria.profitMarginMin > this.constraints.maxProfitMargin) {
+                        throw new Error(`Profit margin minimum must be between ${this.constraints.minProfitMargin}% and ${this.constraints.maxProfitMargin}%`);
+                    }
+                }
+
+                if (criteria.profitMarginMax !== null && criteria.profitMarginMax !== undefined) {
+                    if (typeof criteria.profitMarginMax !== 'number' || 
+                        criteria.profitMarginMax < this.constraints.minProfitMargin || 
+                        criteria.profitMarginMax > this.constraints.maxProfitMargin) {
+                        throw new Error(`Profit margin maximum must be between ${this.constraints.minProfitMargin}% and ${this.constraints.maxProfitMargin}%`);
+                    }
+                }
+
+                if (criteria.profitMarginMin !== null && criteria.profitMarginMax !== null && 
+                    criteria.profitMarginMin !== undefined && criteria.profitMarginMax !== undefined) {
+                    if (criteria.profitMarginMin > criteria.profitMarginMax) {
+                        throw new Error('Profit margin minimum cannot be greater than profit margin maximum');
+                    }
+                }
+            }
+
+            /**
+             * Assign a customer to a specific bucket (exclusive assignment)
+             * @param {string} customerId - Customer identifier
+             * @param {string} bucketId - Target bucket identifier
+             * @throws {Error} If customer or bucket not found
+             */
+            assignCustomerToBucket(customerId, bucketId) {
+                // Validate inputs
+                if (!customerId || typeof customerId !== 'string') {
+                    throw new Error('Customer ID must be a non-empty string');
+                }
+
+                if (!bucketId || typeof bucketId !== 'string') {
+                    throw new Error('Bucket ID must be a non-empty string');
+                }
+
+                // Find customer
+                const customer = this.customers.find(c => c.customerId === customerId);
+                if (!customer) {
+                    throw new Error(`Customer not found: ${customerId}`);
+                }
+
+                // Find bucket
+                const bucket = this.buckets.get(bucketId);
+                if (!bucket) {
+                    throw new Error(`Bucket not found: ${bucketId}`);
+                }
+
+                // Remove customer from current bucket (if any)
+                this.removeCustomerFromAllBuckets(customerId);
+
+                // Add customer to new bucket
+                bucket.assignedCustomers.push(customerId);
+                this.customerToBucket.set(customerId, bucketId);
+                customer.bucketId = bucketId;
+
+                // Update bucket statistics
+                this.updateBucketStatistics(bucketId);
+
+                this.notifyListeners('customerAssigned', { 
+                    customerId, 
+                    bucketId, 
+                    customerName: customer.customerName,
+                    bucketName: bucket.bucketName
+                });
+            }
+
+            /**
+             * Remove customer from all buckets (exclusive assignment enforcement)
+             * @param {string} customerId - Customer identifier
+             */
+            removeCustomerFromAllBuckets(customerId) {
+                const currentBucketId = this.customerToBucket.get(customerId);
+                
+                if (currentBucketId) {
+                    const currentBucket = this.buckets.get(currentBucketId);
+                    
+                    if (currentBucket) {
+                        // Remove from bucket's customer list
+                        const index = currentBucket.assignedCustomers.indexOf(customerId);
+                        if (index > -1) {
+                            currentBucket.assignedCustomers.splice(index, 1);
+                        }
+
+                        // Update bucket statistics
+                        this.updateBucketStatistics(currentBucketId);
+                    }
+
+                    // Remove from mapping
+                    this.customerToBucket.delete(customerId);
+
+                    // Update customer object
+                    const customer = this.customers.find(c => c.customerId === customerId);
+                    if (customer) {
+                        customer.bucketId = null;
+                    }
+
+                    this.notifyListeners('customerRemoved', { 
+                        customerId, 
+                        previousBucketId: currentBucketId 
+                    });
+                }
+            }
+
+            /**
+             * Calculate customer categorization progress
+             * @returns {Object} Progress metrics including percentage and counts
+             */
+            getCategorizationProgress() {
+                const totalCustomers = this.customers.length;
+                const assignedCustomers = this.customerToBucket.size;
+                const unassignedCustomers = totalCustomers - assignedCustomers;
+                const percentageComplete = totalCustomers > 0 ? (assignedCustomers / totalCustomers) * 100 : 0;
+
+                return {
+                    totalCustomers,
+                    assignedCustomers,
+                    unassignedCustomers,
+                    percentageComplete: Math.round(percentageComplete * 10) / 10, // Round to 1 decimal
+                    bucketCount: this.buckets.size,
+                    readyForNextStep: percentageComplete >= 70 // Business rule: 70% minimum
+                };
+            }
+
+            /**
+             * Get list of unassigned customers
+             * @returns {Array<CustomerAnalytics>} Customers without bucket assignment
+             */
+            getUnassignedCustomers() {
+                return this.customers.filter(customer => !customer.bucketId);
+            }
+
+            /**
+             * Bulk assign all unassigned customers to a specific bucket
+             * @param {string} bucketId - Target bucket for bulk assignment
+             * @returns {number} Number of customers assigned
+             * @throws {Error} If bucket not found or no unassigned customers
+             */
+            assignAllUnassignedToBucket(bucketId) {
+                const bucket = this.buckets.get(bucketId);
+                if (!bucket) {
+                    throw new Error(`Bucket not found: ${bucketId}`);
+                }
+
+                const unassignedCustomers = this.getUnassignedCustomers();
+                
+                if (unassignedCustomers.length === 0) {
+                    throw new Error('No unassigned customers to bulk assign');
+                }
+
+                // Assign each unassigned customer
+                let assignedCount = 0;
+                for (const customer of unassignedCustomers) {
+                    try {
+                        this.assignCustomerToBucket(customer.customerId, bucketId);
+                        assignedCount++;
+                    } catch (error) {
+                        console.warn(`Failed to assign customer ${customer.customerName}: ${error.message}`);
+                    }
+                }
+
+                this.notifyListeners('bulkAssignment', { 
+                    bucketId, 
+                    bucketName: bucket.bucketName,
+                    assignedCount,
+                    totalAttempted: unassignedCustomers.length
+                });
+
+                return assignedCount;
+            }
+
+            /**
+             * Recalculate bucket statistics after customer changes
+             * @param {string} bucketId - Bucket to update statistics for
+             * @throws {Error} If bucket not found
+             */
+            updateBucketStatistics(bucketId) {
+                const bucket = this.buckets.get(bucketId);
+                if (!bucket) {
+                    throw new Error(`Bucket not found: ${bucketId}`);
+                }
+
+                const assignedCustomers = bucket.assignedCustomers
+                    .map(customerId => this.customers.find(c => c.customerId === customerId))
+                    .filter(customer => customer !== undefined);
+
+                bucket.customerCount = assignedCustomers.length;
+
+                if (assignedCustomers.length === 0) {
+                    bucket.totalVolume = 0;
+                    bucket.averagePrice = 0;
+                    bucket.averageMargin = 0;
+                } else {
+                    // Calculate totals
+                    bucket.totalVolume = assignedCustomers.reduce((sum, c) => sum + c.totalVolume, 0);
+                    
+                    // Calculate weighted averages
+                    const totalRevenue = assignedCustomers.reduce((sum, c) => sum + (c.totalRevenue || c.totalVolume * c.averageUnitPrice), 0);
+                    bucket.averagePrice = bucket.totalVolume > 0 ? totalRevenue / bucket.totalVolume : 0;
+                    
+                    const totalProfitWeighted = assignedCustomers.reduce((sum, c) => 
+                        sum + (c.profitMargin * (c.totalRevenue || c.totalVolume * c.averageUnitPrice)), 0);
+                    bucket.averageMargin = totalRevenue > 0 ? totalProfitWeighted / totalRevenue : 0;
+                }
+
+                bucket.lastModified = new Date().toISOString();
+
+                this.notifyListeners('bucketStatsUpdated', { bucketId, stats: {
+                    customerCount: bucket.customerCount,
+                    totalVolume: bucket.totalVolume,
+                    averagePrice: bucket.averagePrice,
+                    averageMargin: bucket.averageMargin
+                }});
+            }
+
+            /**
+             * Delete a bucket and unassign all its customers
+             * @param {string} bucketId - Bucket to delete
+             * @throws {Error} If bucket not found
+             */
+            deleteBucket(bucketId) {
+                const bucket = this.buckets.get(bucketId);
+                if (!bucket) {
+                    throw new Error(`Bucket not found: ${bucketId}`);
+                }
+
+                // Unassign all customers from this bucket
+                const customersToUnassign = [...bucket.assignedCustomers];
+                customersToUnassign.forEach(customerId => {
+                    this.removeCustomerFromAllBuckets(customerId);
+                });
+
+                // Remove bucket
+                this.buckets.delete(bucketId);
+
+                this.notifyListeners('bucketDeleted', { 
+                    bucketId, 
+                    bucketName: bucket.bucketName,
+                    unassignedCustomers: customersToUnassign.length
+                });
+            }
+
+            /**
+             * Get all buckets
+             * @returns {Array<CustomerBucket>} Array of all bucket objects
+             */
+            getAllBuckets() {
+                return Array.from(this.buckets.values());
+            }
+
+            /**
+             * Get bucket by ID
+             * @param {string} bucketId - Bucket identifier
+             * @returns {CustomerBucket|null} Bucket object or null if not found
+             */
+            getBucket(bucketId) {
+                return this.buckets.get(bucketId) || null;
+            }
+
+            /**
+             * Get bucket containing a specific customer
+             * @param {string} customerId - Customer identifier
+             * @returns {CustomerBucket|null} Bucket object or null if customer not assigned
+             */
+            getCustomerBucket(customerId) {
+                const bucketId = this.customerToBucket.get(customerId);
+                return bucketId ? this.buckets.get(bucketId) || null : null;
+            }
+
+            /**
+             * Detect customers that meet multiple bucket criteria (for overlap resolution)
+             * @returns {Array<OverlapResolution>} Array of customers with bucket conflicts
+             */
+            detectBucketOverlaps() {
+                const overlaps = [];
+                
+                for (const customer of this.customers) {
+                    const eligibleBuckets = [];
+                    
+                    // Check each bucket's criteria against customer metrics
+                    for (const bucket of this.buckets.values()) {
+                        const matchScore = this.calculateBucketMatchScore(customer, bucket.criteria);
+                        if (matchScore > 0) {
+                            eligibleBuckets.push({
+                                bucketId: bucket.bucketId,
+                                bucketName: bucket.bucketName,
+                                matchScore: Math.round(matchScore * 100) / 100
+                            });
+                        }
+                    }
+
+                    // If customer meets criteria for multiple buckets, it's an overlap
+                    if (eligibleBuckets.length > 1) {
+                        // Sort by match score (highest first)
+                        eligibleBuckets.sort((a, b) => b.matchScore - a.matchScore);
+                        
+                        const conflictReasons = this.generateConflictReasons(customer, eligibleBuckets);
+                        
+                        overlaps.push({
+                            customerId: customer.customerId,
+                            customerName: customer.customerName,
+                            eligibleBuckets,
+                            recommendedBucket: eligibleBuckets[0].bucketId, // Highest match score
+                            conflictReason: conflictReasons
+                        });
+                    }
+                }
+
+                return overlaps;
+            }
+
+            /**
+             * Calculate how well a customer matches bucket criteria (0-1 score)
+             * @private
+             * @param {CustomerAnalytics} customer - Customer to evaluate
+             * @param {BucketCriteria} criteria - Bucket criteria to match against
+             * @returns {number} Match score between 0 and 1
+             */
+            calculateBucketMatchScore(customer, criteria) {
+                let matches = 0;
+                let totalCriteria = 0;
+
+                // Volume criteria
+                if (criteria.volumeMin !== null && criteria.volumeMin !== undefined) {
+                    totalCriteria++;
+                    if (customer.totalVolume >= criteria.volumeMin) matches++;
+                }
+
+                if (criteria.volumeMax !== null && criteria.volumeMax !== undefined) {
+                    totalCriteria++;
+                    if (customer.totalVolume <= criteria.volumeMax) matches++;
+                }
+
+                // Price criteria
+                if (criteria.priceMin !== null && criteria.priceMin !== undefined) {
+                    totalCriteria++;
+                    if (customer.averageUnitPrice >= criteria.priceMin) matches++;
+                }
+
+                if (criteria.priceMax !== null && criteria.priceMax !== undefined) {
+                    totalCriteria++;
+                    if (customer.averageUnitPrice <= criteria.priceMax) matches++;
+                }
+
+                // Profit margin criteria
+                if (criteria.profitMarginMin !== null && criteria.profitMarginMin !== undefined) {
+                    totalCriteria++;
+                    if (customer.profitMargin >= criteria.profitMarginMin) matches++;
+                }
+
+                if (criteria.profitMarginMax !== null && criteria.profitMarginMax !== undefined) {
+                    totalCriteria++;
+                    if (customer.profitMargin <= criteria.profitMarginMax) matches++;
+                }
+
+                return totalCriteria > 0 ? matches / totalCriteria : 0;
+            }
+
+            /**
+             * Generate human-readable conflict reasons for overlapping buckets
+             * @private
+             * @param {CustomerAnalytics} customer - Customer with overlaps
+             * @param {Array} eligibleBuckets - Buckets the customer qualifies for
+             * @returns {string} Conflict explanation
+             */
+            generateConflictReasons(customer, eligibleBuckets) {
+                if (eligibleBuckets.length <= 1) return '';
+
+                const bucketNames = eligibleBuckets.map(b => b.bucketName).join(' and ');
+                const metrics = [];
+
+                if (customer.totalVolume) metrics.push(`${customer.totalVolume.toLocaleString()} yards³ volume`);
+                if (customer.averageUnitPrice) metrics.push(`$${customer.averageUnitPrice.toFixed(2)}/yard price`);
+                if (customer.profitMargin) metrics.push(`${customer.profitMargin.toFixed(1)}% margin`);
+
+                return `Customer meets criteria for ${bucketNames} based on: ${metrics.join(', ')}`;
+            }
+
+            /**
+             * Apply pricing adjustments to a bucket
+             * @param {string} bucketId - Bucket to adjust
+             * @param {number} adjustment - Price adjustment amount
+             * @param {string} type - 'absolute' for $/yard or 'percentage' for %
+             * @throws {Error} If bucket not found or invalid adjustment
+             */
+            applyPricingAdjustment(bucketId, adjustment, type = 'absolute') {
+                const bucket = this.buckets.get(bucketId);
+                if (!bucket) {
+                    throw new Error(`Bucket not found: ${bucketId}`);
+                }
+
+                if (typeof adjustment !== 'number') {
+                    throw new Error('Price adjustment must be a number');
+                }
+
+                if (!['absolute', 'percentage'].includes(type)) {
+                    throw new Error('Adjustment type must be "absolute" or "percentage"');
+                }
+
+                // Validate adjustment bounds
+                if (type === 'percentage' && (adjustment < -50 || adjustment > 100)) {
+                    throw new Error('Percentage adjustments must be between -50% and +100%');
+                }
+
+                if (type === 'absolute' && Math.abs(adjustment) > 100) {
+                    throw new Error('Absolute adjustments must be between -$100 and +$100 per yard');
+                }
+
+                bucket.adjustments.priceAdjustment = adjustment;
+                bucket.adjustments.adjustmentType = type;
+                bucket.lastModified = new Date().toISOString();
+
+                this.notifyListeners('pricingAdjusted', { 
+                    bucketId, 
+                    adjustment, 
+                    type, 
+                    bucketName: bucket.bucketName 
+                });
+            }
+
+            /**
+             * Add event listener for bucket manager events
+             * @param {Function} listener - Event listener function
+             */
+            addEventListener(listener) {
+                if (typeof listener === 'function') {
+                    this.eventListeners.push(listener);
+                }
+            }
+
+            /**
+             * Remove event listener
+             * @param {Function} listener - Event listener function to remove
+             */
+            removeEventListener(listener) {
+                const index = this.eventListeners.indexOf(listener);
+                if (index > -1) {
+                    this.eventListeners.splice(index, 1);
+                }
+            }
+
+            /**
+             * Notify all event listeners of bucket manager events
+             * @private
+             * @param {string} eventType - Type of event that occurred
+             * @param {Object} eventData - Event data payload
+             */
+            notifyListeners(eventType, eventData = {}) {
+                const event = {
+                    type: eventType,
+                    timestamp: new Date().toISOString(),
+                    data: eventData
+                };
+
+                this.eventListeners.forEach(listener => {
+                    try {
+                        listener(event);
+                    } catch (error) {
+                        console.error('Error in bucket manager event listener:', error);
+                    }
+                });
+            }
+
+            /**
+             * Export current bucket configuration and assignments
+             * @returns {Object} Complete bucket manager state
+             */
+            exportState() {
+                return {
+                    buckets: Array.from(this.buckets.entries()),
+                    customerToBucket: Array.from(this.customerToBucket.entries()),
+                    bucketCounter: this.bucketCounter,
+                    exportedAt: new Date().toISOString(),
+                    version: '1.0.0'
+                };
+            }
+
+            /**
+             * Import bucket configuration and assignments
+             * @param {Object} state - Previously exported state
+             * @throws {Error} If state is invalid or incompatible
+             */
+            importState(state) {
+                if (!state || typeof state !== 'object') {
+                    throw new Error('Invalid state object for import');
+                }
+
+                if (state.version !== '1.0.0') {
+                    throw new Error('Incompatible state version');
+                }
+
+                // Clear current state
+                this.buckets.clear();
+                this.customerToBucket.clear();
+
+                // Import buckets
+                if (Array.isArray(state.buckets)) {
+                    for (const [bucketId, bucket] of state.buckets) {
+                        this.buckets.set(bucketId, bucket);
+                    }
+                }
+
+                // Import customer mappings
+                if (Array.isArray(state.customerToBucket)) {
+                    for (const [customerId, bucketId] of state.customerToBucket) {
+                        this.customerToBucket.set(customerId, bucketId);
+                    }
+                }
+
+                // Update bucket counter
+                this.bucketCounter = state.bucketCounter || 1;
+
+                // Update customer objects
+                this.customers.forEach(customer => {
+                    customer.bucketId = this.customerToBucket.get(customer.customerId) || null;
+                });
+
+                this.notifyListeners('stateImported', { 
+                    bucketCount: this.buckets.size,
+                    customerMappings: this.customerToBucket.size
+                });
+            }
+
+            /**
+             * Get comprehensive bucket manager statistics
+             * @returns {Object} Detailed statistics about buckets and assignments
+             */
+            getStatistics() {
+                const progress = this.getCategorizationProgress();
+                const buckets = this.getAllBuckets();
+                
+                const stats = {
+                    overview: progress,
+                    bucketStats: {
+                        totalBuckets: buckets.length,
+                        bucketsWithCustomers: buckets.filter(b => b.customerCount > 0).length,
+                        emptyBuckets: buckets.filter(b => b.customerCount === 0).length,
+                        averageCustomersPerBucket: buckets.length > 0 ? 
+                            buckets.reduce((sum, b) => sum + b.customerCount, 0) / buckets.length : 0
+                    },
+                    volumeDistribution: {
+                        totalVolume: buckets.reduce((sum, b) => sum + b.totalVolume, 0),
+                        averageVolumePerBucket: buckets.length > 0 ? 
+                            buckets.reduce((sum, b) => sum + b.totalVolume, 0) / buckets.length : 0
+                    },
+                    pricingDistribution: {
+                        averagePrice: buckets.length > 0 ? 
+                            buckets.reduce((sum, b) => sum + b.averagePrice, 0) / buckets.length : 0,
+                        priceRange: {
+                            min: Math.min(...buckets.map(b => b.averagePrice)),
+                            max: Math.max(...buckets.map(b => b.averagePrice))
+                        }
+                    }
+                };
+
+                return stats;
+            }
+        }
+
         // Initialize when page loads
         window.onload = init;
+        
+        // Add modal click handlers
+        window.onclick = function(event) {
+            const createModal = document.getElementById('createBucketModal');
+            const bulkModal = document.getElementById('bulkAssignModal');
+            
+            if (event.target === createModal) {
+                closeCreateBucketModal();
+            }
+            if (event.target === bulkModal) {
+                closeBulkAssignModal();
+            }
+        };
     </script>
 </body>
 </html>

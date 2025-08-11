@@ -1,0 +1,387 @@
+STEP 5: CUSTOMER PRICING ADJUSTMENTS - COMPLETE IMPLEMENTATION PLAN
+=======================================================================
+
+PROJECT OVERVIEW
+================
+Build Step 5 of the Concrete Sales & Profit Analyzer to give users the ability to adjust customer pricing through intelligent categorization. This step will reference the differential between Goal Profit vs Projected Profit and enable users to create customer buckets based on Volume, Unit Price, and Profitability.
+
+CORE REQUIREMENTS
+==================
+
+1. PROFIT DIFFERENTIAL DISPLAY
+   - Show Goal Profit vs Projected Profit at page top
+   - Visual indicator of gap/surplus with color coding
+   - Percentage difference calculation
+   - Clear call-to-action to close the gap
+
+2. CUSTOMER CATEGORIZATION SYSTEM
+   - Create buckets characterized by:
+     * Volume purchased (total cubic yards)
+     * Unit sale price (average $/yard)
+     * Customer profitability (profit margin %)
+   - Dynamic bucket creation with custom criteria ranges
+   - Exclusive assignment (one customer per bucket)
+   - Real-time conflict detection and resolution
+
+3. BUSINESS LOGIC CONSTRAINTS
+   - Customers can only be in one bucket at a time
+   - Overlap detection for customers meeting multiple bucket criteria
+   - Progress tracking showing % of customer base categorized
+   - Bulk assignment option for uncategorized customers
+
+4. PRICING ADJUSTMENTS
+   - Apply price adjustments to customer buckets
+   - Calculate revenue impact of pricing changes
+   - Project new profit levels with adjustments
+   - Validate goal achievement potential
+
+DATA STRUCTURES
+===============
+
+CustomerAnalytics Structure:
+{
+  customerId: 'uuid',
+  customerName: 'ABC Construction',
+  totalVolume: 450.5,           // yards purchased historically
+  averageUnitPrice: 125.00,     // average $/yard
+  totalRevenue: 56312.50,       // total sales
+  totalProfit: 12670.31,        // total profit
+  profitMargin: 22.5,           // profit %
+  averageOrderSize: 25.2,       // yards per delivery
+  deliveryCount: 18,            // number of deliveries
+  lastOrderDate: '2024-01-15',  // most recent sale
+  bucketId: null                // assigned bucket (if any)
+}
+
+CustomerBucket Structure:
+{
+  bucketId: 'bucket-1',
+  bucketName: 'High Volume Premium',
+  criteria: {
+    volumeMin: 300,             // minimum yards
+    volumeMax: null,            // maximum yards (null = unlimited)
+    priceMin: 120.00,           // minimum $/yard
+    priceMax: null,             // maximum $/yard  
+    profitMarginMin: 20.0,      // minimum profit %
+    profitMarginMax: null       // maximum profit %
+  },
+  assignedCustomers: ['uuid1', 'uuid2'],
+  customerCount: 2,
+  totalVolume: 890.3,           // combined volume
+  averagePrice: 128.50,         // weighted average
+  averageMargin: 24.2,          // weighted average
+  adjustments: {
+    priceAdjustment: +5.00,     // $/yard adjustment
+    adjustmentType: 'absolute'   // 'absolute' or 'percentage'
+  }
+}
+
+OverlapResolution Structure:
+{
+  customerId: 'uuid',
+  customerName: 'XYZ Construction',
+  eligibleBuckets: [
+    { bucketId: 'bucket-1', bucketName: 'High Volume Premium', matchScore: 0.95 },
+    { bucketId: 'bucket-2', bucketName: 'Premium Pricing', matchScore: 0.87 }
+  ],
+  recommendedBucket: 'bucket-1',
+  conflictReason: 'Customer meets volume criteria for bucket-1 and price criteria for bucket-2'
+}
+
+DATA FLOW DESIGN
+================
+
+Step 4 Summary → Step 5 Entry
+    ↓
+Customer Data Analysis (from historicalData)
+    ↓ 
+[Historical Sales] → [Customer Analytics] → [Bucket Creation] → [Assignment Logic] → [Pricing Adjustments]
+    ↓                                                                                      ↓
+Overlap Detection ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←← Revenue Impact Calculation
+
+Customer Categorization Logic Flow:
+1. Analysis Phase: Calculate metrics for each customer from historical data
+2. Bucket Creation: User defines criteria ranges for each bucket
+3. Automatic Matching: System identifies customers meeting each bucket's criteria  
+4. Overlap Resolution: Present conflicts where customers fit multiple buckets
+5. Manual Assignment: User resolves overlaps and assigns customers
+6. Progress Tracking: Real-time % of customer base categorized
+7. Pricing Application: Apply adjustments and calculate impact
+
+MODULE ARCHITECTURE
+===================
+
+MODULE 1: CustomerAnalyticsEngine
+- Purpose: Process historical data to generate customer metrics
+- Key Functions:
+  * analyzeCustomers() - Calculate all customer metrics from historical sales
+  * extractCustomerData() - Parse customer information from selected months
+  * calculateTotalVolume() - Sum cubic yards per customer
+  * calculateAveragePrice() - Weighted average price per yard
+  * calculateProfitability() - Customer-specific profit margins
+  * detectBucketOverlaps() - Identify customers eligible for multiple buckets
+  * generateCustomerRankings() - Sort customers by various criteria
+
+MODULE 2: CustomerBucketManager
+- Purpose: Handle bucket creation, assignment, and management
+- Key Functions:
+  * createBucket() - Create new customer bucket with criteria
+  * validateBucketCriteria() - Ensure criteria ranges are logical
+  * assignCustomerToBucket() - Move customer to specific bucket
+  * removeCustomerFromAllBuckets() - Clear existing assignments
+  * getCategorizationProgress() - Calculate % of customers categorized
+  * getUnassignedCustomers() - List customers without bucket assignment
+  * assignAllUnassignedToBucket() - Bulk assign remaining customers
+  * updateBucketStatistics() - Recalculate bucket metrics after changes
+
+MODULE 3: PricingAdjustmentCalculator
+- Purpose: Calculate revenue impact and pricing recommendations
+- Key Functions:
+  * calculateAdjustmentImpact() - Project revenue changes from bucket adjustments
+  * calculateBucketImpact() - Individual bucket revenue impact
+  * calculateGoalAchievement() - Measure progress toward profit goal
+  * generatePricingRecommendations() - Suggest optimal pricing strategies
+  * calculateProportionalIncrease() - Even distribution approach
+  * calculateVolumeBasedStrategy() - Target high-volume customers
+  * calculateMarginBasedStrategy() - Focus on high-margin opportunities
+  * validatePricingConstraints() - Ensure adjustments are reasonable
+
+MODULE 4: OverlapResolutionEngine
+- Purpose: Handle conflicts when customers meet multiple bucket criteria
+- Key Functions:
+  * detectOverlaps() - Find customers eligible for multiple buckets
+  * calculateMatchScores() - Score customer fit for each bucket
+  * generateRecommendations() - Suggest best bucket assignment
+  * presentConflictResolution() - UI for manual conflict resolution
+  * autoResolveByPriority() - Automatic resolution using business rules
+  * trackResolutionDecisions() - Log user choices for learning
+
+INTEGRATION PLAN
+================
+
+Data Flow Integration:
+Step 1 (Months) → Step 2 (Goals) → Step 3 (Costs) → Step 4 (Summary) → Step 5 (Pricing) → Step 6 (Final Results)
+     ↓                ↓                 ↓                ↓                  ↓                    ↓
+historicalData → profitGoal → projectedCosts → projectedProfit → pricingAdjustments → finalProjections
+
+Required Data Handoffs:
+- FROM Steps 1-4: selectedMonths, historicalData, totalSelectedRevenue, totalSelectedProfit, profitGoal, projectedVolume, projectedProfit
+- TO Step 6: adjustedPricing, newProjectedRevenue, customerSegmentation, bucketsCreated, pricingImpactSummary
+
+Integration Functions:
+- loadStep5Data() - Import data from previous steps
+- extractCustomerHistory() - Generate customer analytics from historical data
+- calculateProfitGap() - Goal profit minus projected profit
+- updateProjectedRevenue() - Apply pricing adjustments to projections
+- prepareStep6Data() - Package results for final summary
+
+USER INTERFACE DESIGN
+=====================
+
+Page Layout Structure:
+1. Header: Step 5 title and progress indicator
+2. Profit Gap Summary: Goal vs Projected profit with visual gap indicator
+3. Customer Analytics Overview: Total customers, average metrics, distribution
+4. Bucket Management Section: Create, edit, delete customer buckets
+5. Customer Assignment Interface: Drag-and-drop or click-to-assign
+6. Overlap Resolution Panel: Handle conflicts with recommended actions
+7. Progress Tracking: % categorized, customers remaining, bulk actions
+8. Pricing Impact Summary: Revenue changes, goal achievement progress
+9. Navigation: Back to Step 4, Continue to Step 6
+
+Key UI Components:
+- Profit Gap Indicator (visual thermometer/progress bar)
+- Customer Cards (draggable, with key metrics)
+- Bucket Creation Modal (criteria range sliders)
+- Overlap Resolution Dialog (side-by-side comparison)
+- Progress Ring Chart (categorization percentage)
+- Impact Calculator (real-time revenue projections)
+
+IMPLEMENTATION PHASES
+=====================
+
+PHASE 1: Foundation & Data Processing (Days 1-2)
+- Implement CustomerAnalyticsEngine
+- Create customer data extraction from historical sales
+- Build metric calculation functions
+- Test with sample data from existing steps
+
+PHASE 2: Bucket Management System (Days 3-4)
+- Build CustomerBucketManager class
+- Implement bucket creation and validation
+- Create assignment/unassignment logic
+- Add progress tracking functionality
+
+PHASE 3: Overlap Resolution (Days 5-6)
+- Develop OverlapResolutionEngine
+- Build conflict detection algorithms
+- Create match scoring system
+- Implement resolution UI components
+
+PHASE 4: Pricing Calculations (Days 7-8)
+- Build PricingAdjustmentCalculator
+- Implement impact calculation logic
+- Create pricing recommendation engine
+- Add goal achievement tracking
+
+PHASE 5: UI Integration (Days 9-10)
+- Build Step 5 UI components
+- Integrate all backend modules
+- Implement drag-and-drop customer assignment
+- Add real-time updates and animations
+
+PHASE 6: Integration & Testing (Days 11-12)
+- Connect with Steps 1-4 data flow
+- Implement Step 6 data handoff
+- Comprehensive testing with full workflow
+- Performance optimization and bug fixes
+
+TECHNICAL SPECIFICATIONS
+========================
+
+Browser Compatibility: Modern browsers (Chrome 90+, Firefox 88+, Safari 14+, Edge 90+)
+Performance Targets: <2s load time, <500ms interaction response
+Data Validation: Client and server-side validation for all inputs
+Error Handling: Graceful degradation with user-friendly error messages
+Accessibility: WCAG 2.1 AA compliance with keyboard navigation and screen reader support
+
+Dependencies:
+- Existing historical data structure from Steps 1-4
+- Chart.js or similar for profit gap visualization
+- Drag-and-drop library (HTML5 native or SortableJS)
+- CSS Grid/Flexbox for responsive layout
+
+TESTING STRATEGY
+================
+
+Unit Tests:
+- CustomerAnalyticsEngine calculation accuracy
+- Bucket assignment logic validation  
+- Overlap detection algorithms
+- Pricing impact calculations
+
+Integration Tests:
+- Data flow between Steps 4-5-6
+- Customer assignment workflows
+- Overlap resolution processes
+- Pricing adjustment applications
+
+User Acceptance Tests:
+- Complete customer categorization workflow
+- Bulk assignment operations
+- Overlap conflict resolution
+- Goal achievement validation
+
+Performance Tests:
+- Large customer dataset handling (100+ customers)
+- Real-time calculation updates
+- Memory usage optimization
+- Mobile device performance
+
+BUSINESS RULES & VALIDATION
+===========================
+
+Customer Assignment Rules:
+- Each customer can only be in one bucket
+- Bucket criteria must have valid ranges (min <= max)
+- Price adjustments must be within reasonable bounds (-50% to +100%)
+- Volume and profitability criteria must be positive numbers
+
+Data Validation Rules:
+- Customer names must be non-empty strings
+- Volume values must be positive decimals
+- Price values must be positive and <= $500/yard
+- Profitability percentages must be between -100% and +200%
+- Date ranges must be valid and within historical data bounds
+
+Business Logic Constraints:
+- Maximum 20 customer buckets to prevent over-segmentation
+- Minimum 5% price adjustment increment for meaningful impact
+- Require at least 70% customer categorization before proceeding
+- Validate pricing adjustments don't exceed market reasonable limits
+
+SUCCESS CRITERIA
+=================
+
+Functional Success:
+✓ Users can create customer buckets with volume/price/profitability criteria
+✓ System accurately detects and resolves customer assignment overlaps  
+✓ Real-time progress tracking shows categorization percentage
+✓ Pricing adjustments correctly calculate revenue impact
+✓ Goal vs projected profit gap is clearly displayed and actionable
+✓ Bulk assignment works for remaining uncategorized customers
+
+Technical Success:
+✓ Page loads in under 2 seconds with 100 customers
+✓ Calculations update in under 500ms
+✓ No data loss during customer reassignments
+✓ Graceful error handling for edge cases
+✓ Mobile responsive design works on tablets
+
+Business Success:
+✓ Users can identify pricing opportunities to close profit gaps
+✓ Customer segmentation provides actionable insights
+✓ Pricing adjustments are realistic and implementable
+✓ Integration with existing workflow is seamless
+✓ Results feed properly into Step 6 final summary
+
+FUTURE ENHANCEMENTS
+===================
+
+Phase 2 Features (Future Development):
+- Machine learning recommendations for optimal bucket creation
+- Historical pricing elasticity analysis
+- Competitive pricing benchmarking integration
+- Customer lifetime value calculations
+- Seasonal adjustment factors
+- Export customer segments to CRM systems
+- A/B testing framework for pricing strategies
+- Advanced analytics dashboard for customer insights
+
+RISK MITIGATION
+===============
+
+Technical Risks:
+- Performance with large customer datasets → Implement pagination and lazy loading
+- Complex overlap resolution logic → Extensive unit testing and user validation
+- Integration complexity with existing steps → Incremental integration with rollback capability
+
+Business Risks:
+- Over-segmentation leading to confusion → Limit bucket count and provide guidance
+- Unrealistic pricing adjustments → Built-in validation and market constraints
+- User workflow complexity → Progressive disclosure and helpful tooltips
+
+Data Risks:
+- Incomplete historical data → Validation and fallback calculations
+- Customer assignment conflicts → Clear resolution workflow with undo capability
+- Calculation accuracy → Comprehensive test coverage and validation
+
+DEPLOYMENT CHECKLIST
+====================
+
+Pre-Deployment:
+□ All unit tests pass
+□ Integration tests complete
+□ Performance benchmarks met
+□ User acceptance testing approved
+□ Documentation updated
+□ Error handling tested
+□ Mobile responsiveness verified
+
+Deployment:
+□ Backup existing system
+□ Deploy to staging environment
+□ Smoke test critical paths
+□ Deploy to production
+□ Monitor performance metrics
+□ Validate data integrity
+□ User communication sent
+
+Post-Deployment:
+□ Monitor error rates and performance
+□ Collect user feedback
+□ Track usage analytics
+□ Plan iteration improvements
+□ Schedule follow-up reviews
+
+This completes the comprehensive implementation plan for Step 5: Customer Pricing Adjustments. The plan provides detailed technical specifications, business requirements, and implementation phases to build a robust customer categorization and pricing adjustment system.
